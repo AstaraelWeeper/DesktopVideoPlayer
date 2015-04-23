@@ -42,7 +42,7 @@ namespace Mission_Explorer_Desktop
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e) //open Settings Form
         {
-            SettingsForm settingsForm = new SettingsForm();
+            SettingsForm settingsForm = new SettingsForm(returnedSettings);
             if (settingsForm.ShowDialog(this) == DialogResult.OK)
             {
                 returnedSettings = settingsForm.settings;

@@ -9,13 +9,13 @@ namespace Mission_Explorer_Desktop
     {
         public double playbackSpeed { get; set; }
 
-        public bool scaleImages { get; set; } 
+        public bool scaleImages { get; set; }
 
         public Settings() //constructor
         {
             playbackSpeed = 1.0;
             scaleImages = true;
-        }
+        }   
 
     }
 }
