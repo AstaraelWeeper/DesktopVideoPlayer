@@ -54,7 +54,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1109, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1110, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,7 +88,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(15, 27);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(455, 56);
+            this.listBox1.Size = new System.Drawing.Size(856, 56);
             this.listBox1.TabIndex = 1;
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
@@ -117,15 +117,17 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.axWindowsMediaPlayer1);
-            this.splitContainer1.Size = new System.Drawing.Size(1109, 516);
+            this.splitContainer1.Size = new System.Drawing.Size(1110, 516);
             this.splitContainer1.SplitterDistance = 96;
             this.splitContainer1.TabIndex = 3;
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(485, 36);
+            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlay.Location = new System.Drawing.Point(906, 36);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(338, 36);
+            this.btnPlay.Size = new System.Drawing.Size(108, 47);
             this.btnPlay.TabIndex = 2;
             this.btnPlay.Text = "Play Selected File";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -133,13 +135,18 @@
             // 
             // txtSettingsTest
             // 
-            this.txtSettingsTest.Location = new System.Drawing.Point(873, 45);
+            this.txtSettingsTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSettingsTest.Location = new System.Drawing.Point(1029, 45);
             this.txtSettingsTest.Name = "txtSettingsTest";
-            this.txtSettingsTest.Size = new System.Drawing.Size(171, 20);
+            this.txtSettingsTest.Size = new System.Drawing.Size(69, 20);
             this.txtSettingsTest.TabIndex = 0;
             // 
             // axWindowsMediaPlayer1
             // 
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.axWindowsMediaPlayer1.Enabled = true;
             this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 0);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
@@ -151,7 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1109, 516);
+            this.ClientSize = new System.Drawing.Size(1110, 516);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this.menuStrip1;

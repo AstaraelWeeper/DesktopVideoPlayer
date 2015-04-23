@@ -24,12 +24,12 @@ namespace Mission_Explorer_Desktop
 
         private void rbtnVerySlow_CheckedChanged(object sender, EventArgs e)
         {
-            settings.playbackSpeed = 0.5;  //1 = very slow
+            settings.playbackSpeed = 0.25;  //1 = very slow
         }
 
         private void rbtnSlow_CheckedChanged(object sender, EventArgs e)
         {
-            settings.playbackSpeed = 0.75; //2 = slow
+            settings.playbackSpeed = 0.6; //2 = slow
         }
 
         private void rbtnMedium_CheckedChanged(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Mission_Explorer_Desktop
 
         private void rbtnFast_CheckedChanged(object sender, EventArgs e)
         {
-            settings.playbackSpeed = 1.5; //4 = fast
+            settings.playbackSpeed = 2.0; //4 = fast
         }
 
         private void chkScale_CheckedChanged(object sender, EventArgs e)
