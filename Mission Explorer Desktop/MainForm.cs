@@ -12,6 +12,8 @@ namespace Mission_Explorer_Desktop
 {
     public partial class MainForm : Form
      {
+        Settings returnedSettings = new Settings();
+
        private const string DLLfilepath = "C:\\Program Files (x86)\\VideoLAN\\VLC\\axvlc.dll";
        List<string> filesLoaded = new List<string>();
        private int fileCounter = 0;
@@ -36,12 +38,28 @@ namespace Mission_Explorer_Desktop
             process.WaitForExit();
             process.Close();
         }
-
+       
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e) //open Settings Form
         {
             SettingsForm settingsForm = new SettingsForm();
-            settingsForm.ShowDialog(this);
+            if (settingsForm.ShowDialog(this) == DialogResult.OK)
+            {
+                returnedSettings = settingsForm.settings;
+                updateSettings();
+                
+            }
+            else
+            {
+                this.txtSettingsTest.Text = "settings cancelled";
+            }
+            settingsForm.Dispose();
+            
+        }
+
+        private void updateSettings()
+        {
+            axWindowsMediaPlayer1.settings.rate = returnedSettings.playbackSpeed;
         }
 
         private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e) //loading files from local folder
@@ -76,8 +94,9 @@ namespace Mission_Explorer_Desktop
             if (listBox1.SelectedItem != null)
             {
                 string currentFile = listBox1.SelectedItem.ToString();
-                PlayerForm playerForm = new PlayerForm(currentFile);
-                playerForm.ShowDialog(this);
+                axWindowsMediaPlayer1.URL = currentFile;
+              //  PlayerForm playerForm = new PlayerForm(currentFile);
+              //  playerForm.ShowDialog(this);
             }
         }
 
@@ -86,8 +105,9 @@ namespace Mission_Explorer_Desktop
             if (listBox1.SelectedItem != null)
             {
                 string currentFile = listBox1.SelectedItem.ToString();
-                PlayerForm playerForm = new PlayerForm(currentFile);
-                playerForm.ShowDialog(this);
+                axWindowsMediaPlayer1.URL = currentFile;
+              //  PlayerForm playerForm = new PlayerForm(currentFile);
+              //  playerForm.ShowDialog(this);
             }
         }
 

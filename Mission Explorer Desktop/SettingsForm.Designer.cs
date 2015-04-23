@@ -55,9 +55,9 @@
             this.rbtnVerySlow.Name = "rbtnVerySlow";
             this.rbtnVerySlow.Size = new System.Drawing.Size(72, 17);
             this.rbtnVerySlow.TabIndex = 1;
-            this.rbtnVerySlow.TabStop = true;
             this.rbtnVerySlow.Text = "Very Slow";
             this.rbtnVerySlow.UseVisualStyleBackColor = true;
+            this.rbtnVerySlow.CheckedChanged += new System.EventHandler(this.rbtnVerySlow_CheckedChanged);
             // 
             // rbtnSlow
             // 
@@ -66,13 +66,14 @@
             this.rbtnSlow.Name = "rbtnSlow";
             this.rbtnSlow.Size = new System.Drawing.Size(48, 17);
             this.rbtnSlow.TabIndex = 2;
-            this.rbtnSlow.TabStop = true;
             this.rbtnSlow.Text = "Slow";
             this.rbtnSlow.UseVisualStyleBackColor = true;
+            this.rbtnSlow.CheckedChanged += new System.EventHandler(this.rbtnSlow_CheckedChanged);
             // 
             // rbtnMedium
             // 
             this.rbtnMedium.AutoSize = true;
+            this.rbtnMedium.Checked = true;
             this.rbtnMedium.Location = new System.Drawing.Point(173, 43);
             this.rbtnMedium.Name = "rbtnMedium";
             this.rbtnMedium.Size = new System.Drawing.Size(62, 17);
@@ -80,6 +81,7 @@
             this.rbtnMedium.TabStop = true;
             this.rbtnMedium.Text = "Medium";
             this.rbtnMedium.UseVisualStyleBackColor = true;
+            this.rbtnMedium.CheckedChanged += new System.EventHandler(this.rbtnMedium_CheckedChanged);
             // 
             // rbtnFast
             // 
@@ -88,9 +90,9 @@
             this.rbtnFast.Name = "rbtnFast";
             this.rbtnFast.Size = new System.Drawing.Size(45, 17);
             this.rbtnFast.TabIndex = 4;
-            this.rbtnFast.TabStop = true;
             this.rbtnFast.Text = "Fast";
             this.rbtnFast.UseVisualStyleBackColor = true;
+            this.rbtnFast.CheckedChanged += new System.EventHandler(this.rbtnFast_CheckedChanged);
             // 
             // chkScale
             // 
@@ -101,6 +103,7 @@
             this.chkScale.TabIndex = 5;
             this.chkScale.Text = "Scale Images To Screen";
             this.chkScale.UseVisualStyleBackColor = true;
+            this.chkScale.CheckedChanged += new System.EventHandler(this.chkScale_CheckedChanged);
             // 
             // btnSettingsApply
             // 
@@ -110,20 +113,25 @@
             this.btnSettingsApply.TabIndex = 6;
             this.btnSettingsApply.Text = "Apply";
             this.btnSettingsApply.UseVisualStyleBackColor = true;
+            this.btnSettingsApply.Click += new System.EventHandler(this.btnSettingsApply_Click);
             // 
             // btnSettingsCancel
             // 
+            this.btnSettingsCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSettingsCancel.Location = new System.Drawing.Point(182, 120);
             this.btnSettingsCancel.Name = "btnSettingsCancel";
             this.btnSettingsCancel.Size = new System.Drawing.Size(75, 23);
             this.btnSettingsCancel.TabIndex = 7;
             this.btnSettingsCancel.Text = "Cancel";
             this.btnSettingsCancel.UseVisualStyleBackColor = true;
+            this.btnSettingsCancel.Click += new System.EventHandler(this.btnSettingsCancel_Click);
             // 
             // SettingsForm
             // 
+            this.AcceptButton = this.btnSettingsApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnSettingsCancel;
             this.ClientSize = new System.Drawing.Size(322, 163);
             this.Controls.Add(this.btnSettingsCancel);
             this.Controls.Add(this.btnSettingsApply);

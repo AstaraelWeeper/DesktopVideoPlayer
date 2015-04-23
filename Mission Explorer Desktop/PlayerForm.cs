@@ -14,10 +14,11 @@ namespace Mission_Explorer_Desktop
         public PlayerForm(string mediaPath)
         {
             InitializeComponent();
-           // axVLCPlugin21.addTarget = mediaPath;
+            axWindowsMediaPlayer1.URL = mediaPath;
+            lblPlaying.Text = "Playing: " + mediaPath;
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void btnPlayNext_Click(object sender, EventArgs e)
         {
             
         }
