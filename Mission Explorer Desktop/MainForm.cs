@@ -17,18 +17,25 @@ namespace Mission_Explorer_Desktop
      {
         Settings returnedSettings = new Settings();
         FolderTraverse folderTraverse = new FolderTraverse();
-
-       private const string DLLfilepath = "C:\\Program Files (x86)\\VideoLAN\\VLC\\axvlc.dll";
-       List<string> filesLoaded = new List<string>();
-       //private int fileCounter = 0;
-       
+       List<string> JsonRouteTitle = new List<string>();
         
-        public MainForm()
+
+       public MainForm()
+       {
+           InitializeComponent();
+           RefreshData();
+       }
+
+        private void RefreshData()
         {
-            InitializeComponent();
+          folderTraverse.getInitialData();
+          JsonRouteTitle = folderTraverse.ParseJson(); //get json
+          lstRoute.DataSource = JsonRouteTitle; //display it in listbox
+          listBoxTest.DataSource = folderTraverse.countDirectoriesString;
+     
         }
 
-
+        
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e) //open Settings Form
         {
             SettingsForm settingsForm = new SettingsForm(returnedSettings);
@@ -53,40 +60,17 @@ namespace Mission_Explorer_Desktop
 
         private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            folderTraverse.getInitialData();
-
-            List<string> JsonRouteTitle = folderTraverse.parseJson(); //todo get it to display the JSON in a big box and the subroute JSONs below
-            lstRoute.DataSource =JsonRouteTitle;
+   
+            //now will only be used to change the start folder
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                folderTraverse.startFolder = openFileDialog1.FileName;
+                Refresh();
+            }
 
         }
 
-      /*  private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e) //loading files from local folder  **this is the video version**
-        {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-
-            fileDialog.Filter = "Video Files | *.mp4;*.mov;*.mpeg;*.avi";
-            fileDialog.Title = "Choose Input Video File(s)...";
-            fileDialog.Multiselect = true;
-
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-
-                foreach (String file in fileDialog.FileNames) //display all files in listbox and the number of files in a label
-                {
-                    filesLoaded.Add(file);
-                    fileCounter++;
-                    
-                }
-                foreach (string fileString in filesLoaded)
-                {
-                      listBox1.Items.Add(fileString);
-                }
-               
-                lblFilesLoadedNo.Text = "Number of files loaded = " + fileCounter.ToString();
-            }
-
-        } */
+      
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e) //click on a specific item
         {

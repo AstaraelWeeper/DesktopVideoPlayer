@@ -35,6 +35,7 @@
             this.lstRoute = new System.Windows.Forms.ListBox();
             this.lblFilesLoadedNo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lstSubRoute = new System.Windows.Forms.ListBox();
             this.txtSettingsTest = new System.Windows.Forms.TextBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -44,7 +45,8 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
-            this.lstSubRoute = new System.Windows.Forms.ListBox();
+            this.listBoxTest = new System.Windows.Forms.ListBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -109,7 +111,7 @@
             this.lstRoute.FormattingEnabled = true;
             this.lstRoute.Location = new System.Drawing.Point(15, 27);
             this.lstRoute.Name = "lstRoute";
-            this.lstRoute.Size = new System.Drawing.Size(608, 56);
+            this.lstRoute.Size = new System.Drawing.Size(202, 69);
             this.lstRoute.TabIndex = 1;
             this.lstRoute.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
@@ -130,6 +132,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxTest);
             this.splitContainer1.Panel1.Controls.Add(this.lstSubRoute);
             this.splitContainer1.Panel1.Controls.Add(this.txtSettingsTest);
             this.splitContainer1.Panel1.Controls.Add(this.lblFilesLoadedNo);
@@ -142,6 +145,14 @@
             this.splitContainer1.Size = new System.Drawing.Size(1313, 562);
             this.splitContainer1.SplitterDistance = 104;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // lstSubRoute
+            // 
+            this.lstSubRoute.FormattingEnabled = true;
+            this.lstSubRoute.Location = new System.Drawing.Point(235, 27);
+            this.lstSubRoute.Name = "lstSubRoute";
+            this.lstSubRoute.Size = new System.Drawing.Size(230, 69);
+            this.lstSubRoute.TabIndex = 3;
             // 
             // txtSettingsTest
             // 
@@ -251,13 +262,17 @@
             this.pictureBoxBack.TabIndex = 0;
             this.pictureBoxBack.TabStop = false;
             // 
-            // lstSubRoute
+            // listBoxTest
             // 
-            this.lstSubRoute.FormattingEnabled = true;
-            this.lstSubRoute.Location = new System.Drawing.Point(674, 27);
-            this.lstSubRoute.Name = "lstSubRoute";
-            this.lstSubRoute.Size = new System.Drawing.Size(328, 56);
-            this.lstSubRoute.TabIndex = 3;
+            this.listBoxTest.FormattingEnabled = true;
+            this.listBoxTest.Location = new System.Drawing.Point(760, 28);
+            this.listBoxTest.Name = "listBoxTest";
+            this.listBoxTest.Size = new System.Drawing.Size(116, 56);
+            this.listBoxTest.TabIndex = 4;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -316,6 +331,8 @@
         private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.PictureBox pictureBoxBack;
         private System.Windows.Forms.ListBox lstSubRoute;
+        private System.Windows.Forms.ListBox listBoxTest;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

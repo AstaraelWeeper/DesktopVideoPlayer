@@ -17,13 +17,16 @@ namespace Mission_Explorer_Desktop
 {
     class FolderTraverse
     {
-        string startFolder = "C:\\Users\\Rachel Griffiths\\Documents\\Testing\\MissionRoomTestDataZip";
+        public string startFolder = "C:\\Users\\Rachel Griffiths\\Documents\\Testing\\MissionRoomTestDataZip";
         string[] outerFolder; 
         string[] JSONRouteInfoPath; //should only need [0]
-        string[] jpegFolders;
-       // string[] routeJpegs; //not used yet
-        List<string> xmlFilePaths;
+        List<string[]> jpgPaths = new List<string[]>();
         
+        List<string> xmlFilePaths = new List<string>();
+         int countDirectories = 0; 
+        public List<string> countDirectoriesString = new List<string>();
+
+        string extractPath;
         
 
         
@@ -32,48 +35,70 @@ namespace Mission_Explorer_Desktop
 
         public void getInitialData() //should populate outerfolders file paths (subroute folders), the JSON file path, and each XML file path
         {
-           // int countDirectories = 0;
+           
             outerFolder = Directory.GetDirectories(startFolder);
             JSONRouteInfoPath = Directory.GetFiles(startFolder, "*.json");
 
-           /* foreach (string directory in outerFolder)
+            
+
+            foreach (string directory in outerFolder)
             {
-                string[] xmlTemp =  Directory.GetFiles(directory, "*.xml");
-                string xmlTempString = xmlTemp[0];
-                xmlFilePaths.Add (xmlTempString); //xml is the only file so it should go into 0 of xml temp, and can be extracted here into xml FilePath
-
-                string [] innerDirectory = Directory.GetDirectories(directory); //local variable to store the 2 zip files in each subroute folder.
-                string pmdPath = innerDirectory[0]; //temp, before extension change
-                File.Move(pmdPath, Path.ChangeExtension(pmdPath, ".zip")); //need to see what this ends up as, as there is already a .zip. then need file path for image extraction method
-
-  
+                GetXMLFilePaths(directory);
+                ExtractJpegZips(directory);
+                getRouteImages(directory);
+                AddToNumberOfDirectories();
 
                 countDirectories++;
+               
+            } 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+        }
 
-            } */
-            //xmlFilePaths.ToArray();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        public void AddToNumberOfDirectories()
+        {
+            countDirectoriesString.Add(countDirectories.ToString());
+        }
+        public void GetXMLFilePaths(string directory)
+        {
+             //XML file paths//
+             string[] xmlTemp =  Directory.GetFiles(directory, "*.xml");
+             string xmlTempString = xmlTemp[0];
+             xmlFilePaths.Add (xmlTempString); //xml is the only file so it should go into 0 of xml temp, and can be extracted here into xml FilePath
+        }
+
+        public void ExtractJpegZips(string directory)
+        {
+            //through zip1 to JPEGS
+            string zipPath = directory +"\\" + Path.GetFileName(directory) + ".pmd";
+            extractPath = directory + "\\" + Path.GetFileName(directory) + "extractedjpgs";
+            using (ZipFile zip1 = ZipFile.Read(zipPath))
+            {
+                zip1.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+                zip1.ExtractAll(extractPath);
+            }
         }
 
         public void getRouteImages(string directory)
         {
-            
+            string[] routeJpegs = Directory.GetFiles(extractPath);
+            jpgPaths.Add(routeJpegs);
         }
 
-        public List<string> parseJson()
+        public List<string> ParseJson() //get the json for the route title info
         {
             StreamReader JsonStream = new StreamReader(JSONRouteInfoPath[0]);
             string Json = JsonStream.ReadToEnd(); //extract JSON
             var JsonRouteInfo = JsonConvert.DeserializeObject<JSONClass>(Json); //deserialise into class
 
-            List<string> list = new List<string>(); //get the properties of the class
-            PropertyInfo[] JsonProperties  = JsonRouteInfo.GetType().GetProperties();
+            List<string> list = new List<string>(); 
+            PropertyInfo[] JsonProperties  = JsonRouteInfo.GetType().GetProperties();//get the properties of the class
 
-            foreach (var prop in JsonProperties)
+            foreach (var prop in JsonProperties) 
             {
-                string name = prop.Name as string;
-                string value = prop.GetValue(JsonRouteInfo,null) as string;
+                string name = prop.Name as string; //get property name
+                string value = prop.GetValue(JsonRouteInfo,null) as string; //get property value
                 
-                list.Add(name + ":" + value);
+                list.Add(name + ": " + value); //add both to list
             }
             return list;
             
