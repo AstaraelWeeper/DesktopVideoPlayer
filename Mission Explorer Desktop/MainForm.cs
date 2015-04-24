@@ -7,38 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Ionic.Zip;
+using System.Reflection;
+
 
 namespace Mission_Explorer_Desktop
 {
     public partial class MainForm : Form
      {
         Settings returnedSettings = new Settings();
+        FolderTraverse folderTraverse = new FolderTraverse();
 
        private const string DLLfilepath = "C:\\Program Files (x86)\\VideoLAN\\VLC\\axvlc.dll";
        List<string> filesLoaded = new List<string>();
-       private int fileCounter = 0;
+       //private int fileCounter = 0;
        
         
         public MainForm()
         {
             InitializeComponent();
-            RegisterDll(DLLfilepath);
         }
-         
-        public static void RegisterDll(string filePath)
-        {
-            string fileinfo = String.Format(@"/s ""{0}""", filePath);
-            Process process = new Process();
-            process.StartInfo.FileName = "regsvr32.exe";
-            process.StartInfo.Arguments = fileinfo;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
-            process.WaitForExit();
-            process.Close();
-        }
-       
+
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e) //open Settings Form
         {
@@ -59,10 +48,20 @@ namespace Mission_Explorer_Desktop
 
         private void updateSettings()
         {
-            axWindowsMediaPlayer1.settings.rate = returnedSettings.playbackSpeed;
+           // axWindowsMediaPlayer1.settings.rate = returnedSettings.playbackSpeed;
         }
 
-        private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e) //loading files from local folder
+        private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            folderTraverse.getInitialData();
+
+            List<string> JsonRouteTitle = folderTraverse.parseJson(); //todo get it to display the JSON in a big box and the subroute JSONs below
+            lstRoute.DataSource =JsonRouteTitle;
+
+        }
+
+      /*  private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e) //loading files from local folder  **this is the video version**
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
 
@@ -87,25 +86,25 @@ namespace Mission_Explorer_Desktop
                 lblFilesLoadedNo.Text = "Number of files loaded = " + fileCounter.ToString();
             }
 
-        }
+        } */
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e) //click on a specific item
         {
-            if (listBox1.SelectedItem != null)
+            if (lstRoute.SelectedItem != null)
             {
-                string currentFile = listBox1.SelectedItem.ToString();
-                axWindowsMediaPlayer1.URL = currentFile;
-              //  PlayerForm playerForm = new PlayerForm(currentFile);
-              //  playerForm.ShowDialog(this);
+                string currentFile = lstRoute.SelectedItem.ToString();
+                folderTraverse.getRouteImages(currentFile); //ensure this is the subroute directory
+              //  axWindowsMediaPlayer1.URL = currentFile;
+              
             }
         }
 
         private void btnPlay_Click(object sender, EventArgs e) //select an item and press play
         {
-            if (listBox1.SelectedItem != null)
+            if (lstRoute.SelectedItem != null)
             {
-                string currentFile = listBox1.SelectedItem.ToString();
-                axWindowsMediaPlayer1.URL = currentFile;
+                string currentFile = lstRoute.SelectedItem.ToString();
+              //  axWindowsMediaPlayer1.URL = currentFile;
               //  PlayerForm playerForm = new PlayerForm(currentFile);
               //  playerForm.ShowDialog(this);
             }
