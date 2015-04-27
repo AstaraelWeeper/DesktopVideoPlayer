@@ -18,13 +18,11 @@ namespace Mission_Explorer_Desktop
         Settings returnedSettings = new Settings();
         FolderTraverse folderTraverse = new FolderTraverse();
        List<string> JsonRouteTitle = new List<string>();
-       ImageDisplay imageDisplay = new ImageDisplay();
+       static ImageDisplay imageDisplay = new ImageDisplay();
        private System.Timers.Timer _timer;
         //picture indexes
        int l = 0;
-       int f = 0;
-       int r = 0;
-       int b = 0;
+       
 
        public MainForm()
        {
@@ -120,26 +118,26 @@ namespace Mission_Explorer_Desktop
             _timer.Enabled = true;
             LoadPictures();
             
-            
 
         }
 
         private void LoadPictures()
         {
             _timer.Stop();
-          pictureBoxLeft.Load (imageDisplay.leftPictures[l]);
-          pictureBoxfront.Load (imageDisplay.frontPictures[f]);
-          pictureBoxRight.Load(imageDisplay.rightPictures[r]);
-          pictureBoxBack.Load(imageDisplay.backPictures[b]);
+
+            pictureBoxLeft.WaitOnLoad = false;
+            pictureBoxfront.WaitOnLoad = false;
+            pictureBoxRight.WaitOnLoad = false;
+            pictureBoxBack.WaitOnLoad = false;
+
+          pictureBoxLeft.LoadAsync (imageDisplay.leftPictures[l]);
+          pictureBoxfront.LoadAsync (imageDisplay.frontPictures[l]);
+          pictureBoxRight.LoadAsync (imageDisplay.rightPictures[l]);
+          pictureBoxBack.LoadAsync (imageDisplay.backPictures[l]);
 
           if (l < (imageDisplay.leftPictures.Count-1))
           { l++; }
-          if (f < (imageDisplay.frontPictures.Count-1))
-          { f++; }
-          if (r < (imageDisplay.rightPictures.Count-1))
-          { r++; }
-          if (b < (imageDisplay.backPictures.Count-1))
-          { b++; }
+          
           _timer.Start();
         }
            
