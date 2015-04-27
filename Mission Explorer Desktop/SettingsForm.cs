@@ -11,11 +11,11 @@ namespace Mission_Explorer_Desktop
 {
     public partial class SettingsForm : Form
     {
-        double VerySlow = 0.25;
-        double Slow = 0.6;
-        double Medium = 1.0;
-        double Fast = 2.0;
-
+        int VerySlow = 25;
+        int Slow = 15;
+        int Medium = 10;
+        int Fast = 5;
+        
 
         public Settings settings = new Settings();
 
@@ -30,34 +30,36 @@ namespace Mission_Explorer_Desktop
         //show existing settings on new settings form
         private void initialseSettings()
         {
-            switch (settings.playbackSpeed.ToString())
+            if (settings.playbackSpeed == VerySlow)
             {
-                case "0.25":
                     rbtnVerySlow.Checked = true;
                     rbtnSlow.Checked = false;
                     rbtnMedium.Checked = false;
                     rbtnFast.Checked = false;
-                    break;
+            }
 
-                case "0.6":
+            else if (settings.playbackSpeed == Slow)
+            {
                     rbtnVerySlow.Checked = false;
                     rbtnSlow.Checked = true;
                     rbtnMedium.Checked = false;
                     rbtnFast.Checked = false;
-                    break;
-                case "1.0":
+            }
+            else if (settings.playbackSpeed == Medium)
+            {
                     rbtnVerySlow.Checked = false;
                     rbtnSlow.Checked = false;
                     rbtnMedium.Checked = true;
                     rbtnFast.Checked = false;
-                    break;
-                case "2.0":
+            }
+            else if (settings.playbackSpeed == Fast)
+            {
                     rbtnVerySlow.Checked = false;
                     rbtnSlow.Checked = false;
                     rbtnMedium.Checked = false;
                     rbtnFast.Checked = true;
-                    break;
             }
+           
 
             chkScale.Checked = settings.scaleImages;
 

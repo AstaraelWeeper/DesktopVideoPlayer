@@ -22,6 +22,7 @@ namespace Mission_Explorer_Desktop
        private System.Timers.Timer _timer;
         //picture indexes
        int l = 0;
+       int playSpeed = 10;
        
 
        public MainForm()
@@ -59,7 +60,7 @@ namespace Mission_Explorer_Desktop
 
         private void updateSettings()
         {
-           // axWindowsMediaPlayer1.settings.rate = returnedSettings.playbackSpeed;
+           playSpeed = returnedSettings.playbackSpeed;
         }
 
         private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,7 +113,7 @@ namespace Mission_Explorer_Desktop
 
         void RunVideo() //need some kind of timer to adjust with settings. it should pass in an int
         {
-            _timer = new System.Timers.Timer(10); //this will change to number passed in.
+            _timer = new System.Timers.Timer(playSpeed); //this will change to number passed in.
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
             _timer.AutoReset = true;
             _timer.Enabled = true;
