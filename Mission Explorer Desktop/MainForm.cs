@@ -50,10 +50,7 @@ namespace Mission_Explorer_Desktop
                 updateSettings();
                 
             }
-            else
-            {
-                this.txtSettingsTest.Text = "settings cancelled";
-            }
+            
             settingsForm.Dispose();
             
         }
@@ -75,29 +72,7 @@ namespace Mission_Explorer_Desktop
 
         }
 
-      
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e) //click on a specific item
-        {
-            if (lstRoute.SelectedItem != null)
-            {
-                string currentFile = lstRoute.SelectedItem.ToString();
-                folderTraverse.getRouteImages(currentFile); //ensure this is the subroute directory
-              //  axWindowsMediaPlayer1.URL = currentFile;
-              
-            }
-        }
-
-        private void btnPlay_Click(object sender, EventArgs e) //select an item and press play
-        {
-            if (lstRoute.SelectedItem != null)
-            {
-                string currentFile = lstRoute.SelectedItem.ToString();
-              //  axWindowsMediaPlayer1.URL = currentFile;
-              //  PlayerForm playerForm = new PlayerForm(currentFile);
-              //  playerForm.ShowDialog(this);
-            }
-        }
 
         private void listBoxTest_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
         {
@@ -111,7 +86,7 @@ namespace Mission_Explorer_Desktop
 
         }
 
-        void RunVideo() //need some kind of timer to adjust with settings. it should pass in an int
+        void RunVideo() 
         {
             _timer = new System.Timers.Timer(playSpeed); //this will change to number passed in.
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
@@ -145,7 +120,9 @@ namespace Mission_Explorer_Desktop
  
         private void Timer_Elapsed(object sender, EventArgs e)
         {
-            LoadPictures();
+            if (chkPause.Checked == false)
+            { LoadPictures(); }
+           
         }
 
   
