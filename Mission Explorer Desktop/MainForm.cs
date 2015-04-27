@@ -18,7 +18,13 @@ namespace Mission_Explorer_Desktop
         Settings returnedSettings = new Settings();
         FolderTraverse folderTraverse = new FolderTraverse();
        List<string> JsonRouteTitle = new List<string>();
-        //changing for commit
+       ImageDisplay imageDisplay = new ImageDisplay();
+       private System.Timers.Timer _timer;
+        //picture indexes
+       int l = 0;
+       int f = 0;
+       int r = 0;
+       int b = 0;
 
        public MainForm()
        {
@@ -94,6 +100,57 @@ namespace Mission_Explorer_Desktop
             }
         }
 
+        private void listBoxTest_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
+        {
+
+            if (listBoxTest.SelectedItem != null)
+            {
+                int subRoute = Convert.ToInt32(listBoxTest.SelectedItem);
+                imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
+                RunVideo();
+            }
+
+        }
+
+        void RunVideo() //need some kind of timer to adjust with settings. it should pass in an int
+        {
+            _timer = new System.Timers.Timer(10); //this will change to number passed in.
+            _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+            LoadPictures();
+            
+            
+
+        }
+
+        private void LoadPictures()
+        {
+            _timer.Stop();
+          pictureBoxLeft.Load (imageDisplay.leftPictures[l]);
+          pictureBoxfront.Load (imageDisplay.frontPictures[f]);
+          pictureBoxRight.Load(imageDisplay.rightPictures[r]);
+          pictureBoxBack.Load(imageDisplay.backPictures[b]);
+
+          if (l < (imageDisplay.leftPictures.Count-1))
+          { l++; }
+          if (f < (imageDisplay.frontPictures.Count-1))
+          { f++; }
+          if (r < (imageDisplay.rightPictures.Count-1))
+          { r++; }
+          if (b < (imageDisplay.backPictures.Count-1))
+          { b++; }
+          _timer.Start();
+        }
+           
+ 
+        private void Timer_Elapsed(object sender, EventArgs e)
+        {
+            LoadPictures();
+        }
+
   
     }
 }
+
+

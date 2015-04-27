@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FolderTraverse.cs" />
+    <Compile Include="ImageDisplay.cs" />
     <Compile Include="JSONClass.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="MainForm.cs">

@@ -35,6 +35,7 @@
             this.lstRoute = new System.Windows.Forms.ListBox();
             this.lblFilesLoadedNo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listBoxTest = new System.Windows.Forms.ListBox();
             this.lstSubRoute = new System.Windows.Forms.ListBox();
             this.txtSettingsTest = new System.Windows.Forms.TextBox();
             this.btnPlay = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
-            this.listBoxTest = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -145,6 +145,15 @@
             this.splitContainer1.Size = new System.Drawing.Size(1313, 562);
             this.splitContainer1.SplitterDistance = 104;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // listBoxTest
+            // 
+            this.listBoxTest.FormattingEnabled = true;
+            this.listBoxTest.Location = new System.Drawing.Point(760, 28);
+            this.listBoxTest.Name = "listBoxTest";
+            this.listBoxTest.Size = new System.Drawing.Size(116, 56);
+            this.listBoxTest.TabIndex = 4;
+            this.listBoxTest.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTest_MouseDoubleClick);
             // 
             // lstSubRoute
             // 
@@ -261,14 +270,6 @@
             this.pictureBoxBack.Size = new System.Drawing.Size(334, 454);
             this.pictureBoxBack.TabIndex = 0;
             this.pictureBoxBack.TabStop = false;
-            // 
-            // listBoxTest
-            // 
-            this.listBoxTest.FormattingEnabled = true;
-            this.listBoxTest.Location = new System.Drawing.Point(760, 28);
-            this.listBoxTest.Name = "listBoxTest";
-            this.listBoxTest.Size = new System.Drawing.Size(116, 56);
-            this.listBoxTest.TabIndex = 4;
             // 
             // openFileDialog1
             // 
