@@ -21,7 +21,7 @@ namespace Mission_Explorer_Desktop
        static ImageDisplay imageDisplay = new ImageDisplay();
        private System.Timers.Timer _timer;
         //picture indexes
-       int l = 0;
+       int frameNumber = 0;
        int playSpeed = 10;
        
 
@@ -58,6 +58,20 @@ namespace Mission_Explorer_Desktop
         private void updateSettings()
         {
            playSpeed = returnedSettings.playbackSpeed;
+            if(returnedSettings.scaleImages == true)
+            {
+                pictureBoxLeft.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxfront.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxRight.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxBack.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else if (returnedSettings.scaleImages == false)
+            {
+                pictureBoxLeft.SizeMode = PictureBoxSizeMode.Normal;
+                pictureBoxfront.SizeMode = PictureBoxSizeMode.Normal;
+                pictureBoxRight.SizeMode = PictureBoxSizeMode.Normal;
+                pictureBoxBack.SizeMode = PictureBoxSizeMode.Normal;
+            }
         }
 
         private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,18 +115,30 @@ namespace Mission_Explorer_Desktop
         {
             _timer.Stop();
 
-            pictureBoxLeft.WaitOnLoad = false;
-            pictureBoxfront.WaitOnLoad = false;
-            pictureBoxRight.WaitOnLoad = false;
-            pictureBoxBack.WaitOnLoad = false;
+         
+                pictureBoxLeft.WaitOnLoad = false;
+                pictureBoxfront.WaitOnLoad = false;
+                pictureBoxRight.WaitOnLoad = false;
+                pictureBoxBack.WaitOnLoad = false;
 
-          pictureBoxLeft.LoadAsync (imageDisplay.leftPictures[l]);
-          pictureBoxfront.LoadAsync (imageDisplay.frontPictures[l]);
-          pictureBoxRight.LoadAsync (imageDisplay.rightPictures[l]);
-          pictureBoxBack.LoadAsync (imageDisplay.backPictures[l]);
+                pictureBoxLeft.LoadAsync(imageDisplay.leftPictures[frameNumber]);
+                pictureBoxfront.LoadAsync(imageDisplay.frontPictures[frameNumber]);
+                pictureBoxRight.LoadAsync(imageDisplay.rightPictures[frameNumber]);
+                pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
+        }
+        private void NextFrame(){
+              
+            if (radioForwards.Checked == true)
+            {
+                if (frameNumber < (imageDisplay.leftPictures.Count - 1)) //should all be the same
+                { frameNumber++; }
+            }
 
-          if (l < (imageDisplay.leftPictures.Count-1))
-          { l++; }
+            else if (radioBackwards.Checked == true)
+            {
+                if (frameNumber > 0)
+                { frameNumber--; }
+            }
           
           _timer.Start();
         }
@@ -120,9 +146,31 @@ namespace Mission_Explorer_Desktop
  
         private void Timer_Elapsed(object sender, EventArgs e)
         {
-            if (chkPause.Checked == false)
-            { LoadPictures(); }
-           
+            LoadPictures();
+            NextFrame();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e) //stop and clear
+        {
+                _timer.Stop();
+                pictureBoxLeft.Image = null;
+                pictureBoxfront.Image = null;
+                pictureBoxRight.Image = null;
+                pictureBoxBack.Image = null;
+
+                frameNumber = 0;
+
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            _timer.Stop();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            LoadPictures();
+            NextFrame();
         }
 
   

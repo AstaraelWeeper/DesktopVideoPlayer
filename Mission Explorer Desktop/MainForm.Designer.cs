@@ -35,6 +35,11 @@
             this.lstRoute = new System.Windows.Forms.ListBox();
             this.lblFilesLoadedNo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.radioBackwards = new System.Windows.Forms.RadioButton();
+            this.radioForwards = new System.Windows.Forms.RadioButton();
             this.listBoxTest = new System.Windows.Forms.ListBox();
             this.lstSubRoute = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -45,7 +50,6 @@
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.chkPause = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -129,7 +133,11 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.chkPause);
+            this.splitContainer1.Panel1.Controls.Add(this.btnStop);
+            this.splitContainer1.Panel1.Controls.Add(this.btnPause);
+            this.splitContainer1.Panel1.Controls.Add(this.btnPlay);
+            this.splitContainer1.Panel1.Controls.Add(this.radioBackwards);
+            this.splitContainer1.Panel1.Controls.Add(this.radioForwards);
             this.splitContainer1.Panel1.Controls.Add(this.listBoxTest);
             this.splitContainer1.Panel1.Controls.Add(this.lstSubRoute);
             this.splitContainer1.Panel1.Controls.Add(this.lblFilesLoadedNo);
@@ -141,6 +149,58 @@
             this.splitContainer1.Size = new System.Drawing.Size(1380, 594);
             this.splitContainer1.SplitterDistance = 109;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(1176, 39);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 10;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(1058, 39);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.TabIndex = 9;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(933, 39);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.TabIndex = 8;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // radioBackwards
+            // 
+            this.radioBackwards.AutoSize = true;
+            this.radioBackwards.Location = new System.Drawing.Point(1058, 78);
+            this.radioBackwards.Name = "radioBackwards";
+            this.radioBackwards.Size = new System.Drawing.Size(101, 17);
+            this.radioBackwards.TabIndex = 7;
+            this.radioBackwards.Text = "Play Backwards";
+            this.radioBackwards.UseVisualStyleBackColor = true;
+            // 
+            // radioForwards
+            // 
+            this.radioForwards.AutoSize = true;
+            this.radioForwards.Checked = true;
+            this.radioForwards.Location = new System.Drawing.Point(933, 78);
+            this.radioForwards.Name = "radioForwards";
+            this.radioForwards.Size = new System.Drawing.Size(91, 17);
+            this.radioForwards.TabIndex = 6;
+            this.radioForwards.TabStop = true;
+            this.radioForwards.Text = "Play Forwards";
+            this.radioForwards.UseVisualStyleBackColor = true;
             // 
             // listBoxTest
             // 
@@ -250,16 +310,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // chkPause
-            // 
-            this.chkPause.AutoSize = true;
-            this.chkPause.Location = new System.Drawing.Point(933, 39);
-            this.chkPause.Name = "chkPause";
-            this.chkPause.Size = new System.Drawing.Size(86, 17);
-            this.chkPause.TabIndex = 5;
-            this.chkPause.Text = "Pause Video";
-            this.chkPause.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,7 +367,11 @@
         private System.Windows.Forms.ListBox lstSubRoute;
         private System.Windows.Forms.ListBox listBoxTest;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.CheckBox chkPause;
+        private System.Windows.Forms.RadioButton radioBackwards;
+        private System.Windows.Forms.RadioButton radioForwards;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnPlay;
     }
 }
 
