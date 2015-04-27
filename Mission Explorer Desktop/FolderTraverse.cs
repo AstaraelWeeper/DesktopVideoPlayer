@@ -20,7 +20,7 @@ namespace Mission_Explorer_Desktop
         public string startFolder = "C:\\Users\\Rachel Griffiths\\Documents\\Testing\\MissionRoomTestDataZip";
         string[] outerFolder; 
         string[] JSONRouteInfoPath; //should only need [0]
-        List<string[]> jpgPaths = new List<string[]>();
+       public List<string[]> jpgPaths = new List<string[]>(); //the final list of jpeg paths
         
         List<string> xmlFilePaths = new List<string>();
          int countDirectories = 0; 
