@@ -17,12 +17,14 @@ namespace Mission_Explorer_Desktop
      {
         Settings returnedSettings = new Settings();
         FolderTraverse folderTraverse = new FolderTraverse();
+        XMLparse xmlparse = new XMLparse();
        List<string> JsonRouteTitle = new List<string>();
        static ImageDisplay imageDisplay = new ImageDisplay();
        private System.Timers.Timer _timer;
         //picture indexes
        int frameNumber = 0;
        int playSpeed = 10;
+        List<string> frameInfo = new List<string>;
        
 
        public MainForm()
@@ -36,8 +38,9 @@ namespace Mission_Explorer_Desktop
           folderTraverse.getInitialData();
           JsonRouteTitle = folderTraverse.ParseJson(); //get json
           lstRoute.DataSource = JsonRouteTitle; //display it in listbox
-          listBoxTest.DataSource = folderTraverse.countDirectoriesString;
-     
+          listBoxSubRouteNo.DataSource = folderTraverse.countDirectoriesString;
+          lstSubRouteXML.DataSource = xmlparse.GetSubRouteTitles(folderTraverse.xmlFilePaths);
+
         }
 
         
@@ -88,13 +91,14 @@ namespace Mission_Explorer_Desktop
 
 
 
-        private void listBoxTest_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
+        private void listBoxSubRouteNo_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
         {
 
-            if (listBoxTest.SelectedItem != null)
+            if (listBoxSubRouteNo.SelectedItem != null)
             {
-                int subRoute = Convert.ToInt32(listBoxTest.SelectedItem);
+                int subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
                 imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
+                frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
                 RunVideo();
             }
 
@@ -125,6 +129,8 @@ namespace Mission_Explorer_Desktop
                 pictureBoxfront.LoadAsync(imageDisplay.frontPictures[frameNumber]);
                 pictureBoxRight.LoadAsync(imageDisplay.rightPictures[frameNumber]);
                 pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
+
+            lblTrackDistance.Text = frameInfo[frameNumber];
         }
         private void NextFrame(){
               

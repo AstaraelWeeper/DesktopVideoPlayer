@@ -22,7 +22,7 @@ namespace Mission_Explorer_Desktop
         string[] JSONRouteInfoPath; //should only need [0]
        public List<string[]> jpgPaths = new List<string[]>(); //the final list of jpeg paths
         
-        List<string> xmlFilePaths = new List<string>();
+        public List<string> xmlFilePaths = new List<string>();
          int countDirectories = 0; 
         public List<string> countDirectoriesString = new List<string>();
 

@@ -35,13 +35,17 @@
             this.lstRoute = new System.Windows.Forms.ListBox();
             this.lblFilesLoadedNo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblTrackDistance = new System.Windows.Forms.Label();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.radioBackwards = new System.Windows.Forms.RadioButton();
             this.radioForwards = new System.Windows.Forms.RadioButton();
-            this.listBoxTest = new System.Windows.Forms.ListBox();
-            this.lstSubRoute = new System.Windows.Forms.ListBox();
+            this.listBoxSubRouteNo = new System.Windows.Forms.ListBox();
+            this.lstSubRouteXML = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxLeft = new System.Windows.Forms.PictureBox();
@@ -110,10 +114,10 @@
             // 
             this.lstRoute.Enabled = false;
             this.lstRoute.FormattingEnabled = true;
-            this.lstRoute.Location = new System.Drawing.Point(15, 27);
+            this.lstRoute.Location = new System.Drawing.Point(12, 26);
             this.lstRoute.Name = "lstRoute";
             this.lstRoute.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lstRoute.Size = new System.Drawing.Size(268, 69);
+            this.lstRoute.Size = new System.Drawing.Size(169, 108);
             this.lstRoute.TabIndex = 1;
             // 
             // lblFilesLoadedNo
@@ -127,32 +131,72 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.lblTrackDistance);
             this.splitContainer1.Panel1.Controls.Add(this.btnStop);
             this.splitContainer1.Panel1.Controls.Add(this.btnPause);
             this.splitContainer1.Panel1.Controls.Add(this.btnPlay);
             this.splitContainer1.Panel1.Controls.Add(this.radioBackwards);
             this.splitContainer1.Panel1.Controls.Add(this.radioForwards);
-            this.splitContainer1.Panel1.Controls.Add(this.listBoxTest);
-            this.splitContainer1.Panel1.Controls.Add(this.lstSubRoute);
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxSubRouteNo);
+            this.splitContainer1.Panel1.Controls.Add(this.lstSubRouteXML);
             this.splitContainer1.Panel1.Controls.Add(this.lblFilesLoadedNo);
             this.splitContainer1.Panel1.Controls.Add(this.lstRoute);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1380, 594);
-            this.splitContainer1.SplitterDistance = 109;
+            this.splitContainer1.Size = new System.Drawing.Size(1380, 646);
+            this.splitContainer1.SplitterDistance = 156;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox3.Location = new System.Drawing.Point(249, 2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.Text = "Sub Routes";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox2.Location = new System.Drawing.Point(15, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 13;
+            this.textBox2.Text = "Route Information";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox1.Location = new System.Drawing.Point(998, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(141, 20);
+            this.textBox1.TabIndex = 12;
+            this.textBox1.Text = "Select a Sub Route Number";
+            // 
+            // lblTrackDistance
+            // 
+            this.lblTrackDistance.AutoSize = true;
+            this.lblTrackDistance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrackDistance.Location = new System.Drawing.Point(596, 137);
+            this.lblTrackDistance.Name = "lblTrackDistance";
+            this.lblTrackDistance.Size = new System.Drawing.Size(0, 16);
+            this.lblTrackDistance.TabIndex = 11;
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(1176, 39);
+            this.btnStop.Location = new System.Drawing.Point(1293, 39);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 10;
@@ -162,7 +206,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(1058, 39);
+            this.btnPause.Location = new System.Drawing.Point(1212, 39);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -172,7 +216,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(933, 39);
+            this.btnPlay.Location = new System.Drawing.Point(1131, 39);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 8;
@@ -183,7 +227,7 @@
             // radioBackwards
             // 
             this.radioBackwards.AutoSize = true;
-            this.radioBackwards.Location = new System.Drawing.Point(1058, 78);
+            this.radioBackwards.Location = new System.Drawing.Point(1276, 78);
             this.radioBackwards.Name = "radioBackwards";
             this.radioBackwards.Size = new System.Drawing.Size(101, 17);
             this.radioBackwards.TabIndex = 7;
@@ -194,7 +238,7 @@
             // 
             this.radioForwards.AutoSize = true;
             this.radioForwards.Checked = true;
-            this.radioForwards.Location = new System.Drawing.Point(933, 78);
+            this.radioForwards.Location = new System.Drawing.Point(1131, 78);
             this.radioForwards.Name = "radioForwards";
             this.radioForwards.Size = new System.Drawing.Size(91, 17);
             this.radioForwards.TabIndex = 6;
@@ -202,22 +246,24 @@
             this.radioForwards.Text = "Play Forwards";
             this.radioForwards.UseVisualStyleBackColor = true;
             // 
-            // listBoxTest
+            // listBoxSubRouteNo
             // 
-            this.listBoxTest.FormattingEnabled = true;
-            this.listBoxTest.Location = new System.Drawing.Point(760, 28);
-            this.listBoxTest.Name = "listBoxTest";
-            this.listBoxTest.Size = new System.Drawing.Size(115, 69);
-            this.listBoxTest.TabIndex = 4;
-            this.listBoxTest.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTest_MouseDoubleClick);
+            this.listBoxSubRouteNo.FormattingEnabled = true;
+            this.listBoxSubRouteNo.Location = new System.Drawing.Point(1082, 26);
+            this.listBoxSubRouteNo.Name = "listBoxSubRouteNo";
+            this.listBoxSubRouteNo.Size = new System.Drawing.Size(43, 108);
+            this.listBoxSubRouteNo.TabIndex = 4;
+            this.listBoxSubRouteNo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSubRouteNo_MouseDoubleClick);
             // 
-            // lstSubRoute
+            // lstSubRouteXML
             // 
-            this.lstSubRoute.FormattingEnabled = true;
-            this.lstSubRoute.Location = new System.Drawing.Point(308, 28);
-            this.lstSubRoute.Name = "lstSubRoute";
-            this.lstSubRoute.Size = new System.Drawing.Size(357, 69);
-            this.lstSubRoute.TabIndex = 3;
+            this.lstSubRouteXML.Enabled = false;
+            this.lstSubRouteXML.FormattingEnabled = true;
+            this.lstSubRouteXML.Location = new System.Drawing.Point(187, 26);
+            this.lstSubRouteXML.Name = "lstSubRouteXML";
+            this.lstSubRouteXML.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lstSubRouteXML.Size = new System.Drawing.Size(889, 108);
+            this.lstSubRouteXML.TabIndex = 3;
             // 
             // splitContainer2
             // 
@@ -232,7 +278,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1380, 481);
+            this.splitContainer2.Size = new System.Drawing.Size(1380, 486);
             this.splitContainer2.SplitterDistance = 665;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -249,7 +295,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.pictureBoxfront);
-            this.splitContainer3.Size = new System.Drawing.Size(665, 481);
+            this.splitContainer3.Size = new System.Drawing.Size(665, 486);
             this.splitContainer3.SplitterDistance = 322;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -258,7 +304,7 @@
             this.pictureBoxLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxLeft.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLeft.Name = "pictureBoxLeft";
-            this.pictureBoxLeft.Size = new System.Drawing.Size(322, 481);
+            this.pictureBoxLeft.Size = new System.Drawing.Size(322, 486);
             this.pictureBoxLeft.TabIndex = 0;
             this.pictureBoxLeft.TabStop = false;
             // 
@@ -267,7 +313,7 @@
             this.pictureBoxfront.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxfront.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxfront.Name = "pictureBoxfront";
-            this.pictureBoxfront.Size = new System.Drawing.Size(339, 481);
+            this.pictureBoxfront.Size = new System.Drawing.Size(339, 486);
             this.pictureBoxfront.TabIndex = 0;
             this.pictureBoxfront.TabStop = false;
             // 
@@ -284,7 +330,7 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.pictureBoxBack);
-            this.splitContainer4.Size = new System.Drawing.Size(711, 481);
+            this.splitContainer4.Size = new System.Drawing.Size(711, 486);
             this.splitContainer4.SplitterDistance = 355;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -293,7 +339,7 @@
             this.pictureBoxRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxRight.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxRight.Name = "pictureBoxRight";
-            this.pictureBoxRight.Size = new System.Drawing.Size(355, 481);
+            this.pictureBoxRight.Size = new System.Drawing.Size(355, 486);
             this.pictureBoxRight.TabIndex = 0;
             this.pictureBoxRight.TabStop = false;
             // 
@@ -302,7 +348,7 @@
             this.pictureBoxBack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxBack.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxBack.Name = "pictureBoxBack";
-            this.pictureBoxBack.Size = new System.Drawing.Size(352, 481);
+            this.pictureBoxBack.Size = new System.Drawing.Size(352, 486);
             this.pictureBoxBack.TabIndex = 0;
             this.pictureBoxBack.TabStop = false;
             // 
@@ -314,9 +360,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 594);
-            this.Controls.Add(this.menuStrip1);
+            this.ClientSize = new System.Drawing.Size(1380, 670);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Mission Explorer";
@@ -364,14 +410,18 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.PictureBox pictureBoxBack;
-        private System.Windows.Forms.ListBox lstSubRoute;
-        private System.Windows.Forms.ListBox listBoxTest;
+        private System.Windows.Forms.ListBox lstSubRouteXML;
+        private System.Windows.Forms.ListBox listBoxSubRouteNo;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RadioButton radioBackwards;
         private System.Windows.Forms.RadioButton radioForwards;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblTrackDistance;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
