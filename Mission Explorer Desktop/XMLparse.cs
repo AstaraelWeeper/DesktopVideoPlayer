@@ -9,13 +9,12 @@ namespace Mission_Explorer_Desktop
     class XMLparse
     {
         string xmlBuilder;//for adding to the list of titles
-        string FPSstring;
+        
         List<string> subRouteTitles = new List<string>(); //to display
         List<string> frameInfo = new List<string>(); //to display
         public List<int> FPS = new List<int>(); //to use to adjust settings
-      
-
         public List<string> GetSubRouteTitles(List<string> XMlfilepaths)
+
         {  
             foreach (string path in XMlfilepaths) //for each XML file
             {

@@ -139,13 +139,14 @@ namespace Mission_Explorer_Desktop
             NextFrame();
         }
 
-        delegate void UpdateStatusCallback();
         private void UpdateTrackDistance()
         {
             if (lblTrackDistance.InvokeRequired)
             {
-                UpdateStatusCallback callback = new UpdateStatusCallback(UpdateTrackDistance);
-                Invoke(callback, frameInfo[frameNumber]);
+                lblTrackDistance.BeginInvoke(new Action(() =>
+                    {
+                        lblTrackDistance.Text = string.Format(frameInfo[frameNumber]);
+                    }));
             }
             else 
 
@@ -202,7 +203,7 @@ namespace Mission_Explorer_Desktop
                 playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
                 RunVideo();
             }
-   
+
         }
 
   

@@ -155,7 +155,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1380, 646);
-            this.splitContainer1.SplitterDistance = 156;
+            this.splitContainer1.SplitterDistance = 155;
             this.splitContainer1.TabIndex = 3;
             // 
             // textBox3
@@ -253,7 +253,6 @@
             this.listBoxSubRouteNo.Name = "listBoxSubRouteNo";
             this.listBoxSubRouteNo.Size = new System.Drawing.Size(43, 108);
             this.listBoxSubRouteNo.TabIndex = 4;
-           // this.listBoxSubRouteNo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSubRouteNo_MouseDoubleClick);
             // 
             // lstSubRouteXML
             // 
@@ -278,7 +277,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1380, 486);
+            this.splitContainer2.Size = new System.Drawing.Size(1380, 487);
             this.splitContainer2.SplitterDistance = 665;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -295,7 +294,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.pictureBoxfront);
-            this.splitContainer3.Size = new System.Drawing.Size(665, 486);
+            this.splitContainer3.Size = new System.Drawing.Size(665, 487);
             this.splitContainer3.SplitterDistance = 322;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -304,7 +303,7 @@
             this.pictureBoxLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxLeft.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLeft.Name = "pictureBoxLeft";
-            this.pictureBoxLeft.Size = new System.Drawing.Size(322, 486);
+            this.pictureBoxLeft.Size = new System.Drawing.Size(322, 487);
             this.pictureBoxLeft.TabIndex = 0;
             this.pictureBoxLeft.TabStop = false;
             // 
@@ -313,7 +312,7 @@
             this.pictureBoxfront.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxfront.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxfront.Name = "pictureBoxfront";
-            this.pictureBoxfront.Size = new System.Drawing.Size(339, 486);
+            this.pictureBoxfront.Size = new System.Drawing.Size(339, 487);
             this.pictureBoxfront.TabIndex = 0;
             this.pictureBoxfront.TabStop = false;
             // 
@@ -330,7 +329,7 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.pictureBoxBack);
-            this.splitContainer4.Size = new System.Drawing.Size(711, 486);
+            this.splitContainer4.Size = new System.Drawing.Size(711, 487);
             this.splitContainer4.SplitterDistance = 355;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -339,7 +338,7 @@
             this.pictureBoxRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxRight.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxRight.Name = "pictureBoxRight";
-            this.pictureBoxRight.Size = new System.Drawing.Size(355, 486);
+            this.pictureBoxRight.Size = new System.Drawing.Size(355, 487);
             this.pictureBoxRight.TabIndex = 0;
             this.pictureBoxRight.TabStop = false;
             // 
@@ -348,7 +347,7 @@
             this.pictureBoxBack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxBack.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxBack.Name = "pictureBoxBack";
-            this.pictureBoxBack.Size = new System.Drawing.Size(352, 486);
+            this.pictureBoxBack.Size = new System.Drawing.Size(352, 487);
             this.pictureBoxBack.TabIndex = 0;
             this.pictureBoxBack.TabStop = false;
             // 
