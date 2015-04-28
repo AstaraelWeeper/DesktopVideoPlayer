@@ -18,6 +18,7 @@ namespace Mission_Explorer_Desktop
     class FolderTraverse
     {
         public string startFolder = "C:\\Users\\Rachel Griffiths\\Documents\\Testing\\MissionRoomTestDataZip";
+        string startFolderExtracted;
         string[] outerFolder; 
         string[] JSONRouteInfoPath; //should only need [0]
        public List<string[]> jpgPaths = new List<string[]>(); //the final list of jpeg paths
@@ -25,7 +26,7 @@ namespace Mission_Explorer_Desktop
         public List<string> xmlFilePaths = new List<string>();
          int countDirectories = 0; 
         public List<string> countDirectoriesString = new List<string>();
-
+        
         string extractPath;
         
 
@@ -35,12 +36,16 @@ namespace Mission_Explorer_Desktop
 
         public void getInitialData() //should populate outerfolders file paths (subroute folders), the JSON file path, and each XML file path
         {
-           
-            outerFolder = Directory.GetDirectories(startFolder);
-            JSONRouteInfoPath = Directory.GetFiles(startFolder, "*.json");
+            startFolderExtracted = startFolder + "extracted";
+            using (ZipFile zip = ZipFile.Read(startFolder))
+            {
+                zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+                zip.ExtractAll(startFolderExtracted);
+            }
+            outerFolder = Directory.GetDirectories(startFolderExtracted);
+            JSONRouteInfoPath = Directory.GetFiles(startFolderExtracted, "*.json");
 
-            //changing for commit
-
+    
             foreach (string directory in outerFolder)
             {
                 GetXMLFilePaths(directory);

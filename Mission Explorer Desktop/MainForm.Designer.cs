@@ -253,7 +253,7 @@
             this.listBoxSubRouteNo.Name = "listBoxSubRouteNo";
             this.listBoxSubRouteNo.Size = new System.Drawing.Size(43, 108);
             this.listBoxSubRouteNo.TabIndex = 4;
-            this.listBoxSubRouteNo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSubRouteNo_MouseDoubleClick);
+           // this.listBoxSubRouteNo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSubRouteNo_MouseDoubleClick);
             // 
             // lstSubRouteXML
             // 

@@ -23,8 +23,9 @@ namespace Mission_Explorer_Desktop
        private System.Timers.Timer _timer;
         //picture indexes
        int frameNumber = 0;
-       int playSpeed = 10;
-        List<string> frameInfo = new List<string>;
+       int settingsSpeedMultiplier = 1000;
+       int playSpeed = 0;
+        List<string> frameInfo = new List<string>();
        
 
        public MainForm()
@@ -49,7 +50,7 @@ namespace Mission_Explorer_Desktop
             SettingsForm settingsForm = new SettingsForm(returnedSettings);
             if (settingsForm.ShowDialog(this) == DialogResult.OK)
             {
-                returnedSettings = settingsForm.settings;
+                returnedSettings = settingsForm.settings; //returned settings come through from the settings form
                 updateSettings();
                 
             }
@@ -60,7 +61,7 @@ namespace Mission_Explorer_Desktop
 
         private void updateSettings()
         {
-           playSpeed = returnedSettings.playbackSpeed;
+           settingsSpeedMultiplier = returnedSettings.playbackSpeed;
             if(returnedSettings.scaleImages == true)
             {
                 pictureBoxLeft.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -84,14 +85,14 @@ namespace Mission_Explorer_Desktop
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 folderTraverse.startFolder = openFileDialog1.FileName;
-                Refresh();
+                RefreshData();
             }
 
         }
 
 
 
-        private void listBoxSubRouteNo_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
+     /*   private void listBoxSubRouteNo_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
         {
 
             if (listBoxSubRouteNo.SelectedItem != null)
@@ -102,7 +103,7 @@ namespace Mission_Explorer_Desktop
                 RunVideo();
             }
 
-        }
+        } */
 
         void RunVideo() 
         {
@@ -131,6 +132,7 @@ namespace Mission_Explorer_Desktop
                 pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
 
             lblTrackDistance.Text = frameInfo[frameNumber];
+            NextFrame();
         }
         private void NextFrame(){
               
@@ -175,8 +177,15 @@ namespace Mission_Explorer_Desktop
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            LoadPictures();
-            NextFrame();
+            if (listBoxSubRouteNo.SelectedItem != null)
+            {
+                int subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
+                imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
+                frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
+                playSpeed = settingsSpeedMultiplier * xmlparse.FPS[subRoute]; //added to use the FPS from XML
+                RunVideo();
+            }
+   
         }
 
   
