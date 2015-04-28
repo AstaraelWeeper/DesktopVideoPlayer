@@ -13,11 +13,15 @@ namespace Mission_Explorer_Desktop
     {
         string URLroot = "https://maps.googleapis.com/maps/api/staticmap?";
         string URL;
-        string size = "size=850x850&";
+        string size = "size=";
+        string sizeValueHeight = "450";
+        string sizeValueWidth = "800";
         string center = "center=";
-        string zoom = "&zoom=17&";
+        string zoom = "&zoom=";
+        string zoomValue = "17";
         string coordinates;
-        string marker = "markers=color:red|";
+        string marker = "&markers=color:";
+        string markerColour = "red";
     
 
 
@@ -31,8 +35,32 @@ namespace Mission_Explorer_Desktop
 
         void BuildURL()
         {
-            URL = URLroot + center+ coordinates+ zoom + size + marker + coordinates;
+            int zoomInt = (int)numZoom.Value;
+            zoomValue = zoomInt.ToString();
+            GetMarkerColour();
+            URL = URLroot + center+ coordinates + zoom + zoomValue + "&" + size + sizeValueWidth + "x" + sizeValueHeight + marker + markerColour + "|" + coordinates;
 
+        }
+
+        void GetMarkerColour()
+        {
+            if (rdoBlue.Checked == true)
+            {
+                markerColour = "blue";
+            }
+            else if(rdoRed.Checked == true)
+            {
+                markerColour = "red";
+            }
+            else if (rdoPurple.Checked ==true)
+            {
+                markerColour = "purple";
+            }
+        }
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            BuildURL();
+            webBrowser1.Navigate(URL);
         }
     }
 }
