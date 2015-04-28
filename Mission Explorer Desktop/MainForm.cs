@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Ionic.Zip;
 using System.Reflection;
+using System.IO;
 
 
 namespace Mission_Explorer_Desktop
@@ -26,6 +27,7 @@ namespace Mission_Explorer_Desktop
        int settingsSpeedMultiplier = 1000;
        int playSpeed = 0;
         List<string> frameInfo = new List<string>();
+       
        
 
        public MainForm()
@@ -111,6 +113,7 @@ namespace Mission_Explorer_Desktop
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
             _timer.AutoReset = true;
             _timer.Enabled = true;
+            frameNumber = 0;
             LoadPictures();
             
 
@@ -118,6 +121,7 @@ namespace Mission_Explorer_Desktop
 
         private void LoadPictures()
         {
+            
             _timer.Stop();
 
          
@@ -131,8 +135,21 @@ namespace Mission_Explorer_Desktop
                 pictureBoxRight.LoadAsync(imageDisplay.rightPictures[frameNumber]);
                 pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
 
-            lblTrackDistance.Text = frameInfo[frameNumber];
+            UpdateTrackDistance();
             NextFrame();
+        }
+
+        delegate void UpdateStatusCallback();
+        private void UpdateTrackDistance()
+        {
+            if (lblTrackDistance.InvokeRequired)
+            {
+                UpdateStatusCallback callback = new UpdateStatusCallback(UpdateTrackDistance);
+                Invoke(callback, frameInfo[frameNumber]);
+            }
+            else 
+
+            lblTrackDistance.Text = frameInfo[frameNumber];
         }
         private void NextFrame(){
               
@@ -182,7 +199,7 @@ namespace Mission_Explorer_Desktop
                 int subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
                 imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
                 frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
-                playSpeed = settingsSpeedMultiplier * xmlparse.FPS[subRoute]; //added to use the FPS from XML
+                playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
                 RunVideo();
             }
    

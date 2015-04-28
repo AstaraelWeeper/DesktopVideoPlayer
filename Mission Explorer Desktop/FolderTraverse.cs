@@ -36,14 +36,14 @@ namespace Mission_Explorer_Desktop
 
         public void getInitialData() //should populate outerfolders file paths (subroute folders), the JSON file path, and each XML file path
         {
-            startFolderExtracted = startFolder + "extracted";
+          /*  startFolderExtracted = startFolder + "extracted";
             using (ZipFile zip = ZipFile.Read(startFolder))
             {
                 zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
                 zip.ExtractAll(startFolderExtracted);
-            }
-            outerFolder = Directory.GetDirectories(startFolderExtracted);
-            JSONRouteInfoPath = Directory.GetFiles(startFolderExtracted, "*.json");
+            } */   //this is for changing file
+            outerFolder = Directory.GetDirectories(startFolder); //needs to be startfolderextracted if the above code is active
+            JSONRouteInfoPath = Directory.GetFiles(startFolder, "*.json"); //needs to be startfolderextracted if the above code is active
 
     
             foreach (string directory in outerFolder)

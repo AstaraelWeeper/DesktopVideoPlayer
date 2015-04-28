@@ -43,7 +43,7 @@ namespace Mission_Explorer_Desktop
             string FPSstring = (string)element.Attribute("FPS");
             int FPSvalue;
             if (FPSstring == null)
-            { FPSvalue = 1; }
+            { FPSvalue = 5; }
             else
             { FPSvalue = Int32.Parse(element.Attribute("FPS").Value); }
             FPS.Add(FPSvalue);
@@ -54,9 +54,10 @@ namespace Mission_Explorer_Desktop
         {
             XDocument doc = XDocument.Load(XMlfilepath); //to complete
 
-            var FramesElement = doc.Descendants("Frames").First().Descendants("Frame");
+            var FramesElement = doc.Descendants("frames").First();
+            var frames = doc.Descendants("frame");
 
-            foreach (var element in FramesElement)
+            foreach (var element in frames)
             {
                 var distAttribute = element.Attribute("elrdst").Value.ToString();
                 frameInfo.Add(distAttribute);

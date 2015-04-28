@@ -17,6 +17,7 @@ namespace Mission_Explorer_Desktop
 
         public void LoadAllPicturePaths(string[]subrouteJpegFilePaths)
         {
+
             allSubroutePictures = subrouteJpegFilePaths;
             LoadLeftPictures();
             LoadFrontPictures();
@@ -27,6 +28,7 @@ namespace Mission_Explorer_Desktop
         
         void LoadLeftPictures()
         {
+            leftPictures.Clear();
             for (int i=0; i<allSubroutePictures.Length; i+=4)
             {
                 leftPictures.Add(allSubroutePictures[i]);
@@ -35,6 +37,7 @@ namespace Mission_Explorer_Desktop
 
         void LoadFrontPictures()
         {
+            frontPictures.Clear();
             for (int i = 1; i < allSubroutePictures.Length; i += 4)
             {
                 frontPictures.Add(allSubroutePictures[i]);
@@ -43,6 +46,7 @@ namespace Mission_Explorer_Desktop
 
         void LoadRightPictures()
         {
+            rightPictures.Clear();
             for (int i = 2; i < allSubroutePictures.Length; i += 4)
             {
                 rightPictures.Add(allSubroutePictures[i]);
@@ -51,6 +55,7 @@ namespace Mission_Explorer_Desktop
 
         void LoadBackPictures()
         {
+            backPictures.Clear();
             for (int i = 3; i < allSubroutePictures.Length; i += 4)
             {
                 backPictures.Add(allSubroutePictures[i]);
