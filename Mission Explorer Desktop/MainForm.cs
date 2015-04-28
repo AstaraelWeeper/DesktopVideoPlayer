@@ -27,6 +27,7 @@ namespace Mission_Explorer_Desktop
        int settingsSpeedMultiplier = 1000;
        int playSpeed = 0;
         List<string> frameInfo = new List<string>();
+        int subRoute = 0;
        
        
 
@@ -145,7 +146,7 @@ namespace Mission_Explorer_Desktop
             {
                 lblTrackDistance.BeginInvoke(new Action(() =>
                     {
-                        lblTrackDistance.Text = string.Format(frameInfo[frameNumber]);
+                        lblTrackDistance.Text = "Distance = " + string.Format(frameInfo[frameNumber]);
                     }));
             }
             else 
@@ -197,13 +198,20 @@ namespace Mission_Explorer_Desktop
         {
             if (listBoxSubRouteNo.SelectedItem != null)
             {
-                int subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
+                subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
                 imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
                 frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
                 playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
                 RunVideo();
             }
 
+        }
+
+        private void btnGoogleMaps_Click(object sender, EventArgs e)
+        {
+            string check = xmlparse.GoogleMapsCoords[frameNumber];
+            GoogleMaps googleMaps = new GoogleMaps(xmlparse.GoogleMapsCoords[frameNumber]);
+            googleMaps.Show();
         }
 
   

@@ -54,6 +54,7 @@
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnGoogleMaps = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -137,6 +138,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnGoogleMaps);
             this.splitContainer1.Panel1.Controls.Add(this.textBox3);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
@@ -355,6 +357,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnGoogleMaps
+            // 
+            this.btnGoogleMaps.Location = new System.Drawing.Point(1146, 110);
+            this.btnGoogleMaps.Name = "btnGoogleMaps";
+            this.btnGoogleMaps.Size = new System.Drawing.Size(201, 23);
+            this.btnGoogleMaps.TabIndex = 15;
+            this.btnGoogleMaps.Text = "View in Google Maps";
+            this.btnGoogleMaps.UseVisualStyleBackColor = true;
+            this.btnGoogleMaps.Click += new System.EventHandler(this.btnGoogleMaps_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -421,6 +433,7 @@
         private System.Windows.Forms.Label lblTrackDistance;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnGoogleMaps;
     }
 }
 

@@ -9,10 +9,11 @@ namespace Mission_Explorer_Desktop
     class XMLparse
     {
         string xmlBuilder;//for adding to the list of titles
-        
+        string coordsBuilder;
         List<string> subRouteTitles = new List<string>(); //to display
         List<string> frameInfo = new List<string>(); //to display
         public List<int> FPS = new List<int>(); //to use to adjust settings
+        public List<string> GoogleMapsCoords = new List<string>();
         public List<string> GetSubRouteTitles(List<string> XMlfilepaths)
 
         {  
@@ -51,18 +52,36 @@ namespace Mission_Explorer_Desktop
 
         public List<string> GetFrameInfo(string XMlfilepath) 
         {
-            XDocument doc = XDocument.Load(XMlfilepath); //to complete
+            
+            XDocument doc = XDocument.Load(XMlfilepath); 
 
             var FramesElement = doc.Descendants("frames").First();
             var frames = doc.Descendants("frame");
 
-            foreach (var element in frames)
+            foreach (var element in frames) //for each frame
             {
                 var distAttribute = element.Attribute("elrdst").Value.ToString();
                 frameInfo.Add(distAttribute);
+                var mapAttribute = element.Attribute("pos").Value.ToString(); //get the positions as one string
+                var mapLatLong = mapAttribute.Split(','); //split into 2 or 3 strings in an array
+
+                for (int i = 0; i < 2; i++)
+                {
+                     //only need the first 2 out of possible 3 coordinates, with a comma between them, adding back into one string
+                    if (i == 1)
+                    {
+                        coordsBuilder += "," + mapLatLong[i];
+                    }
+                    else
+                    { coordsBuilder += mapLatLong[i]; }
+                }
+
+                GoogleMapsCoords.Add(coordsBuilder); //add each string into a list
+                coordsBuilder = "";
+                
             }
 
             return frameInfo;
         }
-    }
+    } 
 }
