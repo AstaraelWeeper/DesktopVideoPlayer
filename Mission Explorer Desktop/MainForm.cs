@@ -50,6 +50,10 @@ namespace Mission_Explorer_Desktop
         
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e) //open Settings Form
         {
+            if (_timer != null)
+            {
+                _timer.Stop();
+            }
             SettingsForm settingsForm = new SettingsForm(returnedSettings);
             if (settingsForm.ShowDialog(this) == DialogResult.OK)
             {
@@ -146,8 +150,16 @@ namespace Mission_Explorer_Desktop
             {
                 lblTrackDistance.BeginInvoke(new Action(() =>
                     {
-                        lblTrackDistance.Text = "Distance = " + string.Format(frameInfo[frameNumber]);
+                        if (returnedSettings.units == "meters"){
+                        lblTrackDistance.Text = "Distance = " + string.Format(frameInfo[frameNumber])+ " " + returnedSettings.units;}
+                        else if (returnedSettings.units == "miles")
+                        {
+                            double frameInfoDouble = (Double.Parse(frameInfo[frameNumber]) / 1609.344);//convert to miles
+                            lblTrackDistance.Text = "Distance = " + frameInfoDouble.ToString() + " " + returnedSettings.units;
+                        }
+                        
                     }));
+
             }
             else 
 

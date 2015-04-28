@@ -36,6 +36,12 @@
             this.chkScale = new System.Windows.Forms.CheckBox();
             this.btnSettingsApply = new System.Windows.Forms.Button();
             this.btnSettingsCancel = new System.Windows.Forms.Button();
+            this.rdoMetres = new System.Windows.Forms.RadioButton();
+            this.rdoMiles = new System.Windows.Forms.RadioButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPlaybackSpeed
@@ -73,12 +79,10 @@
             // rbtnMedium
             // 
             this.rbtnMedium.AutoSize = true;
-            this.rbtnMedium.Checked = true;
             this.rbtnMedium.Location = new System.Drawing.Point(173, 43);
             this.rbtnMedium.Name = "rbtnMedium";
             this.rbtnMedium.Size = new System.Drawing.Size(62, 17);
             this.rbtnMedium.TabIndex = 3;
-            this.rbtnMedium.TabStop = true;
             this.rbtnMedium.Text = "Medium";
             this.rbtnMedium.UseVisualStyleBackColor = true;
             this.rbtnMedium.CheckedChanged += new System.EventHandler(this.rbtnMedium_CheckedChanged);
@@ -107,7 +111,7 @@
             // 
             // btnSettingsApply
             // 
-            this.btnSettingsApply.Location = new System.Drawing.Point(34, 120);
+            this.btnSettingsApply.Location = new System.Drawing.Point(30, 166);
             this.btnSettingsApply.Name = "btnSettingsApply";
             this.btnSettingsApply.Size = new System.Drawing.Size(75, 23);
             this.btnSettingsApply.TabIndex = 6;
@@ -118,7 +122,7 @@
             // btnSettingsCancel
             // 
             this.btnSettingsCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSettingsCancel.Location = new System.Drawing.Point(182, 120);
+            this.btnSettingsCancel.Location = new System.Drawing.Point(194, 166);
             this.btnSettingsCancel.Name = "btnSettingsCancel";
             this.btnSettingsCancel.Size = new System.Drawing.Size(75, 23);
             this.btnSettingsCancel.TabIndex = 7;
@@ -126,13 +130,52 @@
             this.btnSettingsCancel.UseVisualStyleBackColor = true;
             this.btnSettingsCancel.Click += new System.EventHandler(this.btnSettingsCancel_Click);
             // 
+            // rdoMetres
+            // 
+            this.rdoMetres.AutoSize = true;
+            this.rdoMetres.Checked = true;
+            this.rdoMetres.Location = new System.Drawing.Point(16, 124);
+            this.rdoMetres.Name = "rdoMetres";
+            this.rdoMetres.Size = new System.Drawing.Size(57, 17);
+            this.rdoMetres.TabIndex = 8;
+            this.rdoMetres.TabStop = true;
+            this.rdoMetres.Text = "Metres";
+            this.rdoMetres.UseVisualStyleBackColor = true;
+            this.rdoMetres.CheckedChanged += new System.EventHandler(this.rdoMetres_CheckedChanged);
+            // 
+            // rdoMiles
+            // 
+            this.rdoMiles.AutoSize = true;
+            this.rdoMiles.Location = new System.Drawing.Point(194, 12);
+            this.rdoMiles.Name = "rdoMiles";
+            this.rdoMiles.Size = new System.Drawing.Size(49, 17);
+            this.rdoMiles.TabIndex = 9;
+            this.rdoMiles.Text = "Miles";
+            this.rdoMiles.UseVisualStyleBackColor = true;
+            this.rdoMiles.CheckedChanged += new System.EventHandler(this.rdoMiles_CheckedChanged);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.rdoMiles);
+            this.splitContainer1.Size = new System.Drawing.Size(322, 216);
+            this.splitContainer1.SplitterDistance = 108;
+            this.splitContainer1.TabIndex = 10;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.btnSettingsApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSettingsCancel;
-            this.ClientSize = new System.Drawing.Size(322, 163);
+            this.ClientSize = new System.Drawing.Size(322, 216);
+            this.Controls.Add(this.rdoMetres);
             this.Controls.Add(this.btnSettingsCancel);
             this.Controls.Add(this.btnSettingsApply);
             this.Controls.Add(this.chkScale);
@@ -141,9 +184,14 @@
             this.Controls.Add(this.rbtnSlow);
             this.Controls.Add(this.rbtnVerySlow);
             this.Controls.Add(this.lblPlaybackSpeed);
+            this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "SettingsForm";
             this.Text = "Settings";
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +207,8 @@
         private System.Windows.Forms.CheckBox chkScale;
         private System.Windows.Forms.Button btnSettingsApply;
         private System.Windows.Forms.Button btnSettingsCancel;
+        private System.Windows.Forms.RadioButton rdoMetres;
+        private System.Windows.Forms.RadioButton rdoMiles;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

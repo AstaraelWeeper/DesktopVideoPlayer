@@ -11,10 +11,13 @@ namespace Mission_Explorer_Desktop
 
         public bool scaleImages { get; set; }
 
+        public string units { get; set; }
+
         public Settings() //constructor
         {
             playbackSpeed = 10;
             scaleImages = true;
+            units = "meters";
         }   
 
     }

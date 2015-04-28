@@ -63,6 +63,8 @@ namespace Mission_Explorer_Desktop
 
             chkScale.Checked = settings.scaleImages;
 
+            
+
         }
 
         //update settings from buttons
@@ -92,6 +94,18 @@ namespace Mission_Explorer_Desktop
             settings.scaleImages = chkScale.Checked;
         }
 
+        //units
+
+       private void rdoMetres_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.units = "metres";
+        }
+
+        private void rdoMiles_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.units = "miles";
+        }
+
 
         //return buttons
 
@@ -106,6 +120,7 @@ namespace Mission_Explorer_Desktop
             this.DialogResult = DialogResult.Cancel;
         }
 
+ 
 
     }
 }
