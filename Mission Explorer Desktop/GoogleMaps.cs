@@ -33,6 +33,13 @@ namespace Mission_Explorer_Desktop
             webBrowser1.Navigate(URL);
         }
 
+        public void AddMarkers(string extraCoordinates)
+        {
+            coordinates += ("|" + extraCoordinates);
+            BuildURL();
+            webBrowser1.Navigate(URL);
+        }
+
         void BuildURL()
         {
             int zoomInt = (int)numZoom.Value;
@@ -62,5 +69,6 @@ namespace Mission_Explorer_Desktop
             BuildURL();
             webBrowser1.Navigate(URL);
         }
+
     }
 }

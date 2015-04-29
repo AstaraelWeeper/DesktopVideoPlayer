@@ -30,13 +30,13 @@
         {
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rdoPurple = new System.Windows.Forms.RadioButton();
+            this.rdoRed = new System.Windows.Forms.RadioButton();
+            this.rdoBlue = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.numZoom = new System.Windows.Forms.NumericUpDown();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.rdoBlue = new System.Windows.Forms.RadioButton();
-            this.rdoRed = new System.Windows.Forms.RadioButton();
-            this.rdoPurple = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +76,47 @@
             this.splitContainer1.Size = new System.Drawing.Size(667, 536);
             this.splitContainer1.SplitterDistance = 49;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(138, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Marker Colour";
+            // 
+            // rdoPurple
+            // 
+            this.rdoPurple.AutoSize = true;
+            this.rdoPurple.Location = new System.Drawing.Point(362, 15);
+            this.rdoPurple.Name = "rdoPurple";
+            this.rdoPurple.Size = new System.Drawing.Size(55, 17);
+            this.rdoPurple.TabIndex = 9;
+            this.rdoPurple.Text = "Purple";
+            this.rdoPurple.UseVisualStyleBackColor = true;
+            // 
+            // rdoRed
+            // 
+            this.rdoRed.AutoSize = true;
+            this.rdoRed.Location = new System.Drawing.Point(287, 15);
+            this.rdoRed.Name = "rdoRed";
+            this.rdoRed.Size = new System.Drawing.Size(45, 17);
+            this.rdoRed.TabIndex = 8;
+            this.rdoRed.Text = "Red";
+            this.rdoRed.UseVisualStyleBackColor = true;
+            // 
+            // rdoBlue
+            // 
+            this.rdoBlue.AutoSize = true;
+            this.rdoBlue.Checked = true;
+            this.rdoBlue.Location = new System.Drawing.Point(217, 15);
+            this.rdoBlue.Name = "rdoBlue";
+            this.rdoBlue.Size = new System.Drawing.Size(46, 17);
+            this.rdoBlue.TabIndex = 7;
+            this.rdoBlue.TabStop = true;
+            this.rdoBlue.Text = "Blue";
+            this.rdoBlue.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -117,47 +158,6 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // rdoBlue
-            // 
-            this.rdoBlue.AutoSize = true;
-            this.rdoBlue.Checked = true;
-            this.rdoBlue.Location = new System.Drawing.Point(217, 15);
-            this.rdoBlue.Name = "rdoBlue";
-            this.rdoBlue.Size = new System.Drawing.Size(46, 17);
-            this.rdoBlue.TabIndex = 7;
-            this.rdoBlue.TabStop = true;
-            this.rdoBlue.Text = "Blue";
-            this.rdoBlue.UseVisualStyleBackColor = true;
-            // 
-            // rdoRed
-            // 
-            this.rdoRed.AutoSize = true;
-            this.rdoRed.Location = new System.Drawing.Point(287, 15);
-            this.rdoRed.Name = "rdoRed";
-            this.rdoRed.Size = new System.Drawing.Size(45, 17);
-            this.rdoRed.TabIndex = 8;
-            this.rdoRed.Text = "Red";
-            this.rdoRed.UseVisualStyleBackColor = true;
-            // 
-            // rdoPurple
-            // 
-            this.rdoPurple.AutoSize = true;
-            this.rdoPurple.Location = new System.Drawing.Point(362, 15);
-            this.rdoPurple.Name = "rdoPurple";
-            this.rdoPurple.Size = new System.Drawing.Size(55, 17);
-            this.rdoPurple.TabIndex = 9;
-            this.rdoPurple.Text = "Purple";
-            this.rdoPurple.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(138, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Marker Colour";
             // 
             // GoogleMaps
             // 

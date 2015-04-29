@@ -28,7 +28,9 @@ namespace Mission_Explorer_Desktop
        int playSpeed = 0;
         List<string> frameInfo = new List<string>();
         int subRoute = 0;
-        bool Playing;
+        bool playing;
+       public bool googleMapsInit = false;
+       private static GoogleMaps googleMaps = null;
        
        
 
@@ -122,7 +124,7 @@ namespace Mission_Explorer_Desktop
             _timer.AutoReset = true;
             _timer.Enabled = true;
             frameNumber = 0;
-            Playing = true;
+            playing = true;
             LoadPictures();
             
 
@@ -145,6 +147,7 @@ namespace Mission_Explorer_Desktop
                 pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
 
             UpdateTrackDistance();
+            UpdateMap();
             NextFrame();
         }
 
@@ -187,7 +190,11 @@ namespace Mission_Explorer_Desktop
           
           _timer.Start();
         }
+
+        void UpdateMap()
+        {
            
+        }
  
         private void Timer_Elapsed(object sender, EventArgs e)
         {
@@ -198,7 +205,7 @@ namespace Mission_Explorer_Desktop
         private void btnStop_Click(object sender, EventArgs e) //stop and clear
         {
                 _timer.Stop();
-                Playing = false;
+                playing = false;
                 pictureBoxLeft.Image = null;
                 pictureBoxfront.Image = null;
                 pictureBoxRight.Image = null;
@@ -235,11 +242,19 @@ namespace Mission_Explorer_Desktop
             if(_timer !=null)
             { _timer.Stop(); }
 
-            if (Playing == true)
+            if (playing == true)
             {
                 string check = xmlparse.GoogleMapsCoords[frameNumber];
-                GoogleMaps googleMaps = new GoogleMaps(xmlparse.GoogleMapsCoords[frameNumber]);
-                googleMaps.Show();
+                if (googleMaps == null)
+                {
+                    googleMaps = new GoogleMaps(check);
+                    googleMaps.Show();
+                }
+                else
+                {
+                    googleMaps.AddMarkers(check);
+                    googleMaps.Focus();
+                }
             }
         }
 
