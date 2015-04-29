@@ -53,7 +53,9 @@ namespace Mission_Explorer_Desktop
         public List<string> GetFrameInfo(string XMlfilepath) 
         {
             
-            XDocument doc = XDocument.Load(XMlfilepath); 
+            XDocument doc = XDocument.Load(XMlfilepath);
+
+            frameInfo.Clear(); //clears previous subroute data
 
             var FramesElement = doc.Descendants("frames").First();
             var frames = doc.Descendants("frame");

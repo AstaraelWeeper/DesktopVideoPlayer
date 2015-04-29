@@ -28,6 +28,7 @@ namespace Mission_Explorer_Desktop
        int playSpeed = 0;
         List<string> frameInfo = new List<string>();
         int subRoute = 0;
+        bool Playing;
        
        
 
@@ -40,10 +41,13 @@ namespace Mission_Explorer_Desktop
         private void RefreshData()
         {
           folderTraverse.getInitialData();
-          JsonRouteTitle = folderTraverse.ParseJson(); //get json
-          lstRoute.DataSource = JsonRouteTitle; //display it in listbox
-          listBoxSubRouteNo.DataSource = folderTraverse.countDirectoriesString;
-          lstSubRouteXML.DataSource = xmlparse.GetSubRouteTitles(folderTraverse.xmlFilePaths);
+          if (folderTraverse.startFolder != null)
+          {
+              JsonRouteTitle = folderTraverse.ParseJson(); //get json
+              lstRoute.DataSource = JsonRouteTitle; //display it in listbox
+              listBoxSubRouteNo.DataSource = folderTraverse.countDirectoriesString;
+              lstSubRouteXML.DataSource = xmlparse.GetSubRouteTitles(folderTraverse.xmlFilePaths);
+          }
 
         }
 
@@ -118,6 +122,7 @@ namespace Mission_Explorer_Desktop
             _timer.AutoReset = true;
             _timer.Enabled = true;
             frameNumber = 0;
+            Playing = true;
             LoadPictures();
             
 
@@ -170,6 +175,8 @@ namespace Mission_Explorer_Desktop
             {
                 if (frameNumber < (imageDisplay.leftPictures.Count - 1)) //should all be the same
                 { frameNumber++; }
+                else
+                { _timer.Stop(); }
             }
 
             else if (radioBackwards.Checked == true)
@@ -191,12 +198,17 @@ namespace Mission_Explorer_Desktop
         private void btnStop_Click(object sender, EventArgs e) //stop and clear
         {
                 _timer.Stop();
+                Playing = false;
                 pictureBoxLeft.Image = null;
                 pictureBoxfront.Image = null;
                 pictureBoxRight.Image = null;
                 pictureBoxBack.Image = null;
 
+                lblTrackDistance.Text = "";
+
                 frameNumber = 0;
+                
+
 
         }
 
@@ -220,9 +232,21 @@ namespace Mission_Explorer_Desktop
 
         private void btnGoogleMaps_Click(object sender, EventArgs e)
         {
-            string check = xmlparse.GoogleMapsCoords[frameNumber];
-            GoogleMaps googleMaps = new GoogleMaps(xmlparse.GoogleMapsCoords[frameNumber]);
-            googleMaps.Show();
+            if(_timer !=null)
+            { _timer.Stop(); }
+
+            if (Playing == true)
+            {
+                string check = xmlparse.GoogleMapsCoords[frameNumber];
+                GoogleMaps googleMaps = new GoogleMaps(xmlparse.GoogleMapsCoords[frameNumber]);
+                googleMaps.Show();
+            }
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            frameNumber = 0;
+            _timer.Start();
         }
 
   

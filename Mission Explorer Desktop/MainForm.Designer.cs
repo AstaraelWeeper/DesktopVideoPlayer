@@ -35,6 +35,8 @@
             this.lstRoute = new System.Windows.Forms.ListBox();
             this.lblFilesLoadedNo = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnRestart = new System.Windows.Forms.Button();
+            this.btnGoogleMaps = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -54,7 +56,6 @@
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnGoogleMaps = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnRestart);
             this.splitContainer1.Panel1.Controls.Add(this.btnGoogleMaps);
             this.splitContainer1.Panel1.Controls.Add(this.textBox3);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
@@ -160,6 +162,26 @@
             this.splitContainer1.SplitterDistance = 155;
             this.splitContainer1.TabIndex = 3;
             // 
+            // btnRestart
+            // 
+            this.btnRestart.Location = new System.Drawing.Point(1279, 39);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(75, 23);
+            this.btnRestart.TabIndex = 16;
+            this.btnRestart.Text = "Restart";
+            this.btnRestart.UseVisualStyleBackColor = true;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            // 
+            // btnGoogleMaps
+            // 
+            this.btnGoogleMaps.Location = new System.Drawing.Point(1069, 111);
+            this.btnGoogleMaps.Name = "btnGoogleMaps";
+            this.btnGoogleMaps.Size = new System.Drawing.Size(201, 23);
+            this.btnGoogleMaps.TabIndex = 15;
+            this.btnGoogleMaps.Text = "View in Google Maps";
+            this.btnGoogleMaps.UseVisualStyleBackColor = true;
+            this.btnGoogleMaps.Click += new System.EventHandler(this.btnGoogleMaps_Click);
+            // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -181,7 +203,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(998, 3);
+            this.textBox1.Location = new System.Drawing.Point(826, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(141, 20);
             this.textBox1.TabIndex = 12;
@@ -198,7 +220,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(1293, 39);
+            this.btnStop.Location = new System.Drawing.Point(1180, 39);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 10;
@@ -208,7 +230,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(1212, 39);
+            this.btnPause.Location = new System.Drawing.Point(1081, 39);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -218,7 +240,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(1131, 39);
+            this.btnPlay.Location = new System.Drawing.Point(981, 39);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 8;
@@ -229,7 +251,7 @@
             // radioBackwards
             // 
             this.radioBackwards.AutoSize = true;
-            this.radioBackwards.Location = new System.Drawing.Point(1276, 78);
+            this.radioBackwards.Location = new System.Drawing.Point(1199, 78);
             this.radioBackwards.Name = "radioBackwards";
             this.radioBackwards.Size = new System.Drawing.Size(101, 17);
             this.radioBackwards.TabIndex = 7;
@@ -240,7 +262,7 @@
             // 
             this.radioForwards.AutoSize = true;
             this.radioForwards.Checked = true;
-            this.radioForwards.Location = new System.Drawing.Point(1131, 78);
+            this.radioForwards.Location = new System.Drawing.Point(1046, 78);
             this.radioForwards.Name = "radioForwards";
             this.radioForwards.Size = new System.Drawing.Size(91, 17);
             this.radioForwards.TabIndex = 6;
@@ -251,7 +273,7 @@
             // listBoxSubRouteNo
             // 
             this.listBoxSubRouteNo.FormattingEnabled = true;
-            this.listBoxSubRouteNo.Location = new System.Drawing.Point(1082, 26);
+            this.listBoxSubRouteNo.Location = new System.Drawing.Point(883, 26);
             this.listBoxSubRouteNo.Name = "listBoxSubRouteNo";
             this.listBoxSubRouteNo.Size = new System.Drawing.Size(43, 108);
             this.listBoxSubRouteNo.TabIndex = 4;
@@ -263,7 +285,7 @@
             this.lstSubRouteXML.Location = new System.Drawing.Point(187, 26);
             this.lstSubRouteXML.Name = "lstSubRouteXML";
             this.lstSubRouteXML.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lstSubRouteXML.Size = new System.Drawing.Size(889, 108);
+            this.lstSubRouteXML.Size = new System.Drawing.Size(690, 108);
             this.lstSubRouteXML.TabIndex = 3;
             // 
             // splitContainer2
@@ -357,16 +379,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnGoogleMaps
-            // 
-            this.btnGoogleMaps.Location = new System.Drawing.Point(1146, 110);
-            this.btnGoogleMaps.Name = "btnGoogleMaps";
-            this.btnGoogleMaps.Size = new System.Drawing.Size(201, 23);
-            this.btnGoogleMaps.TabIndex = 15;
-            this.btnGoogleMaps.Text = "View in Google Maps";
-            this.btnGoogleMaps.UseVisualStyleBackColor = true;
-            this.btnGoogleMaps.Click += new System.EventHandler(this.btnGoogleMaps_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,6 +446,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnGoogleMaps;
+        private System.Windows.Forms.Button btnRestart;
     }
 }
 

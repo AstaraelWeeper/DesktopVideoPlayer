@@ -11,10 +11,10 @@ namespace Mission_Explorer_Desktop
 {
     public partial class SettingsForm : Form
     {
-        int VerySlow = 250;
-        int Slow = 500;
-        int Medium = 1000;
-        int Fast = 2000;
+        int VerySlow = 3000;
+        int Slow = 2000;
+        int Medium = 500;
+        int Fast = 250;
         
 
         public Settings settings = new Settings();

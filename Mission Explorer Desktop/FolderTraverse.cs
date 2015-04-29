@@ -17,7 +17,7 @@ namespace Mission_Explorer_Desktop
 {
     class FolderTraverse
     {
-        public string startFolder = "C:\\Users\\Rachel Griffiths\\Documents\\Testing\\Demodata.zip";
+        public string startFolder;
         string startFolderExtracted;
         string[] outerFolder; 
         string[] JSONRouteInfoPath; //should only need [0]
@@ -36,26 +36,30 @@ namespace Mission_Explorer_Desktop
 
         public void getInitialData() //should populate outerfolders file paths (subroute folders), the JSON file path, and each XML file path
         {
-          startFolderExtracted = startFolder + "extracted";
-            using (ZipFile zip = ZipFile.Read(startFolder))
+            if (startFolder != null)
             {
-                zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
-                zip.ExtractAll(startFolderExtracted);
-            }    //this is for changing file
-            outerFolder = Directory.GetDirectories(startFolderExtracted); //needs to be startfolderextracted if the above code is active
-            JSONRouteInfoPath = Directory.GetFiles(startFolderExtracted, "*.json"); //needs to be startfolderextracted if the above code is active
+                startFolderExtracted = startFolder + "extracted";
+                using (ZipFile zip = ZipFile.Read(startFolder))
+                {
+                    zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
+                    zip.ExtractAll(startFolderExtracted);
+                }    //this is for changing file
+                outerFolder = Directory.GetDirectories(startFolderExtracted); //needs to be startfolderextracted if the above code is active
+                JSONRouteInfoPath = Directory.GetFiles(startFolderExtracted, "*.json"); //needs to be startfolderextracted if the above code is active
 
-    
-            foreach (string directory in outerFolder)
-            {
-                GetXMLFilePaths(directory);
-                ExtractJpegZips(directory);
-                getRouteImages(directory);
-                AddToNumberOfDirectories();
 
-                countDirectories++;
-               
-            } 
+                foreach (string directory in outerFolder)
+                {
+                    GetXMLFilePaths(directory);
+                    ExtractJpegZips(directory);
+                    getRouteImages(directory);
+                    AddToNumberOfDirectories();
+
+                    countDirectories++;
+
+                }
+
+            }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         }
 
