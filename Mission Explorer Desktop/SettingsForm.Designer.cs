@@ -39,7 +39,9 @@
             this.rdoMetres = new System.Windows.Forms.RadioButton();
             this.rdoMiles = new System.Windows.Forms.RadioButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblUnits = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +59,7 @@
             // rbtnVerySlow
             // 
             this.rbtnVerySlow.AutoSize = true;
-            this.rbtnVerySlow.Location = new System.Drawing.Point(13, 43);
+            this.rbtnVerySlow.Location = new System.Drawing.Point(16, 44);
             this.rbtnVerySlow.Name = "rbtnVerySlow";
             this.rbtnVerySlow.Size = new System.Drawing.Size(72, 17);
             this.rbtnVerySlow.TabIndex = 1;
@@ -68,7 +70,7 @@
             // rbtnSlow
             // 
             this.rbtnSlow.AutoSize = true;
-            this.rbtnSlow.Location = new System.Drawing.Point(105, 43);
+            this.rbtnSlow.Location = new System.Drawing.Point(101, 44);
             this.rbtnSlow.Name = "rbtnSlow";
             this.rbtnSlow.Size = new System.Drawing.Size(48, 17);
             this.rbtnSlow.TabIndex = 2;
@@ -79,10 +81,12 @@
             // rbtnMedium
             // 
             this.rbtnMedium.AutoSize = true;
-            this.rbtnMedium.Location = new System.Drawing.Point(173, 43);
+            this.rbtnMedium.Checked = true;
+            this.rbtnMedium.Location = new System.Drawing.Point(160, 44);
             this.rbtnMedium.Name = "rbtnMedium";
             this.rbtnMedium.Size = new System.Drawing.Size(62, 17);
             this.rbtnMedium.TabIndex = 3;
+            this.rbtnMedium.TabStop = true;
             this.rbtnMedium.Text = "Medium";
             this.rbtnMedium.UseVisualStyleBackColor = true;
             this.rbtnMedium.CheckedChanged += new System.EventHandler(this.rbtnMedium_CheckedChanged);
@@ -90,7 +94,7 @@
             // rbtnFast
             // 
             this.rbtnFast.AutoSize = true;
-            this.rbtnFast.Location = new System.Drawing.Point(262, 43);
+            this.rbtnFast.Location = new System.Drawing.Point(228, 44);
             this.rbtnFast.Name = "rbtnFast";
             this.rbtnFast.Size = new System.Drawing.Size(45, 17);
             this.rbtnFast.TabIndex = 4;
@@ -111,7 +115,7 @@
             // 
             // btnSettingsApply
             // 
-            this.btnSettingsApply.Location = new System.Drawing.Point(30, 166);
+            this.btnSettingsApply.Location = new System.Drawing.Point(31, 69);
             this.btnSettingsApply.Name = "btnSettingsApply";
             this.btnSettingsApply.Size = new System.Drawing.Size(75, 23);
             this.btnSettingsApply.TabIndex = 6;
@@ -122,7 +126,7 @@
             // btnSettingsCancel
             // 
             this.btnSettingsCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSettingsCancel.Location = new System.Drawing.Point(194, 166);
+            this.btnSettingsCancel.Location = new System.Drawing.Point(160, 69);
             this.btnSettingsCancel.Name = "btnSettingsCancel";
             this.btnSettingsCancel.Size = new System.Drawing.Size(75, 23);
             this.btnSettingsCancel.TabIndex = 7;
@@ -134,7 +138,7 @@
             // 
             this.rdoMetres.AutoSize = true;
             this.rdoMetres.Checked = true;
-            this.rdoMetres.Location = new System.Drawing.Point(16, 124);
+            this.rdoMetres.Location = new System.Drawing.Point(49, 31);
             this.rdoMetres.Name = "rdoMetres";
             this.rdoMetres.Size = new System.Drawing.Size(57, 17);
             this.rdoMetres.TabIndex = 8;
@@ -146,7 +150,7 @@
             // rdoMiles
             // 
             this.rdoMiles.AutoSize = true;
-            this.rdoMiles.Location = new System.Drawing.Point(194, 12);
+            this.rdoMiles.Location = new System.Drawing.Point(149, 31);
             this.rdoMiles.Name = "rdoMiles";
             this.rdoMiles.Size = new System.Drawing.Size(49, 17);
             this.rdoMiles.TabIndex = 9;
@@ -161,12 +165,33 @@
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.rbtnFast);
+            this.splitContainer1.Panel1.Controls.Add(this.rbtnMedium);
+            this.splitContainer1.Panel1.Controls.Add(this.rbtnSlow);
+            this.splitContainer1.Panel1.Controls.Add(this.rbtnVerySlow);
+            // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblUnits);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSettingsCancel);
+            this.splitContainer1.Panel2.Controls.Add(this.rdoMetres);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSettingsApply);
             this.splitContainer1.Panel2.Controls.Add(this.rdoMiles);
-            this.splitContainer1.Size = new System.Drawing.Size(322, 216);
-            this.splitContainer1.SplitterDistance = 108;
+            this.splitContainer1.Size = new System.Drawing.Size(289, 242);
+            this.splitContainer1.SplitterDistance = 121;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // lblUnits
+            // 
+            this.lblUnits.AutoSize = true;
+            this.lblUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnits.Location = new System.Drawing.Point(9, 0);
+            this.lblUnits.Name = "lblUnits";
+            this.lblUnits.Size = new System.Drawing.Size(140, 13);
+            this.lblUnits.TabIndex = 10;
+            this.lblUnits.Text = "Select Track Distance Units";
             // 
             // SettingsForm
             // 
@@ -174,20 +199,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSettingsCancel;
-            this.ClientSize = new System.Drawing.Size(322, 216);
-            this.Controls.Add(this.rdoMetres);
-            this.Controls.Add(this.btnSettingsCancel);
-            this.Controls.Add(this.btnSettingsApply);
+            this.ClientSize = new System.Drawing.Size(289, 242);
             this.Controls.Add(this.chkScale);
-            this.Controls.Add(this.rbtnFast);
-            this.Controls.Add(this.rbtnMedium);
-            this.Controls.Add(this.rbtnSlow);
-            this.Controls.Add(this.rbtnVerySlow);
             this.Controls.Add(this.lblPlaybackSpeed);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "SettingsForm";
             this.Text = "Settings";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -210,5 +230,6 @@
         private System.Windows.Forms.RadioButton rdoMetres;
         private System.Windows.Forms.RadioButton rdoMiles;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label lblUnits;
     }
 }

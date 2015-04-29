@@ -58,8 +58,7 @@ namespace Mission_Explorer_Desktop
             if (settingsForm.ShowDialog(this) == DialogResult.OK)
             {
                 returnedSettings = settingsForm.settings; //returned settings come through from the settings form
-                updateSettings();
-                
+                updateSettings(); 
             }
             
             settingsForm.Dispose();
@@ -155,7 +154,7 @@ namespace Mission_Explorer_Desktop
                         else if (returnedSettings.units == "miles")
                         {
                             double frameInfoDouble = (Double.Parse(frameInfo[frameNumber]) / 1609.344);//convert to miles
-                            lblTrackDistance.Text = "Distance = " + frameInfoDouble.ToString() + " " + returnedSettings.units;
+                            lblTrackDistance.Text = "Distance = " + frameInfoDouble.ToString("F") + " " + returnedSettings.units;
                         }
                         
                     }));
