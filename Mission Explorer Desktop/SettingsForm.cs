@@ -23,12 +23,12 @@ namespace Mission_Explorer_Desktop
         {
             InitializeComponent();
             settings = existingSettings;
-            initialseSettings();
+            InitialseSettings();
         }
 
 
         //show existing settings on new settings form
-        private void initialseSettings()
+        private void InitialseSettings()
         {
             if (settings.playbackSpeed == VerySlow)
             {

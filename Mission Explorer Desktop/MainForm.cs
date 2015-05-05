@@ -140,7 +140,6 @@ namespace Mission_Explorer_Desktop
                 pictureBoxBack.LoadAsync(backPictures[frameNumber]);
 
             UpdateTrackDistance();
-            UpdateMap();
             NextFrame();
         }
 
@@ -171,8 +170,7 @@ namespace Mission_Explorer_Desktop
             {
                 if (frameNumber < (leftPictures.Count - 1)) //should all be the same
                 { frameNumber++; }
-                else
-                { _timer.Stop(); }
+                
             }
 
             else if (radioBackwards.Checked == true)
@@ -184,11 +182,6 @@ namespace Mission_Explorer_Desktop
           _timer.Start();
         }
 
-        void UpdateMap()
-        {
-           
-        }
- 
         private void Timer_Elapsed(object sender, EventArgs e)
         {
             LoadPictures();
