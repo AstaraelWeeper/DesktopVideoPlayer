@@ -7,61 +7,26 @@ namespace Mission_Explorer_Desktop
 {
     class ImageDisplay 
     {
-        public List<string> leftPictures = new List<string>();
-        public List<string> frontPictures = new List<string>();
-        public List<string> rightPictures = new List<string>();
-        public List<string> backPictures = new List<string>();
+        public List<string> displayPictures = new List<string>();
+        
         string[] allSubroutePictures;
-        int channels = 4; //this can be changed if the xml indicates more than 4 screens are used
+         
         
 
 
-        public void LoadAllPicturePaths(string[]subrouteJpegFilePaths)
+        public List<string> LoadAllPicturePaths(string[]subrouteJpegFilePaths, int picBox, int channels)
         {
-
             allSubroutePictures = subrouteJpegFilePaths;
-            LoadLeftPictures();
-            LoadFrontPictures();
-            LoadRightPictures();
-            LoadBackPictures();
+            displayPictures.Clear();
+            for (int i=picBox; i<allSubroutePictures.Length; i+=channels)
+            {
+                displayPictures.Add(allSubroutePictures[i]);
+            }
+            return displayPictures;
         }
         
         
-        void LoadLeftPictures()
-        {
-            leftPictures.Clear();
-            for (int i=0; i<allSubroutePictures.Length; i+=4)
-            {
-                leftPictures.Add(allSubroutePictures[i]);
-            }
-        }
-
-        void LoadFrontPictures()
-        {
-            frontPictures.Clear();
-            for (int i = 1; i < allSubroutePictures.Length; i += 4)
-            {
-                frontPictures.Add(allSubroutePictures[i]);
-            }
-        }
-
-        void LoadRightPictures()
-        {
-            rightPictures.Clear();
-            for (int i = 2; i < allSubroutePictures.Length; i += 4)
-            {
-                rightPictures.Add(allSubroutePictures[i]);
-            }
-        }
-
-        void LoadBackPictures()
-        {
-            backPictures.Clear();
-            for (int i = 3; i < allSubroutePictures.Length; i += 4)
-            {
-                backPictures.Add(allSubroutePictures[i]);
-            }
-        }
+     
 
     }
 }

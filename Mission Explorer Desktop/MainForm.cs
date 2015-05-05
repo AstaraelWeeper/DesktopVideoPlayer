@@ -20,7 +20,10 @@ namespace Mission_Explorer_Desktop
         FolderTraverse folderTraverse = new FolderTraverse();
         XMLparse xmlparse = new XMLparse();
        List<string> JsonRouteTitle = new List<string>();
-       static ImageDisplay imageDisplay = new ImageDisplay();
+       List<string> leftPictures = new List<string>();
+       List<string> frontPictures = new List<string>();
+       List<string> rightPictures = new List<string>();
+       List<string> backPictures = new List<string>();
        private System.Timers.Timer _timer;
         //picture indexes
        int frameNumber = 0;
@@ -30,6 +33,7 @@ namespace Mission_Explorer_Desktop
         int subRoute = 0;
         bool playing;
        private static GoogleMaps googleMaps = null;
+       int channels = 4; //this can be changed if the xml indicates more than 4 screens are used
        
        
 
@@ -130,10 +134,10 @@ namespace Mission_Explorer_Desktop
                 pictureBoxRight.WaitOnLoad = false;
                 pictureBoxBack.WaitOnLoad = false;
 
-                pictureBoxLeft.LoadAsync(imageDisplay.leftPictures[frameNumber]);
-                pictureBoxfront.LoadAsync(imageDisplay.frontPictures[frameNumber]);
-                pictureBoxRight.LoadAsync(imageDisplay.rightPictures[frameNumber]);
-                pictureBoxBack.LoadAsync(imageDisplay.backPictures[frameNumber]);
+                pictureBoxLeft.LoadAsync(leftPictures[frameNumber]);
+                pictureBoxfront.LoadAsync(frontPictures[frameNumber]);
+                pictureBoxRight.LoadAsync(rightPictures[frameNumber]);
+                pictureBoxBack.LoadAsync(backPictures[frameNumber]);
 
             UpdateTrackDistance();
             UpdateMap();
@@ -165,7 +169,7 @@ namespace Mission_Explorer_Desktop
               
             if (radioForwards.Checked == true)
             {
-                if (frameNumber < (imageDisplay.leftPictures.Count - 1)) //should all be the same
+                if (frameNumber < (leftPictures.Count - 1)) //should all be the same
                 { frameNumber++; }
                 else
                 { _timer.Stop(); }
@@ -218,9 +222,32 @@ namespace Mission_Explorer_Desktop
             if (listBoxSubRouteNo.SelectedItem != null)
             {
                 subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
-                imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
+                
                 frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
                 playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
+                   for (int i = 0; i < channels; i++)
+                {
+                    ImageDisplay imageDisplay = new ImageDisplay();
+
+                    if (i == 0)
+                    {
+                        leftPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                    }
+                    else if (i==1)
+                    {
+                        frontPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                    }
+                    else if (i == 2)
+                    {
+                        rightPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                    }
+                    else if (i == 3)
+                    {
+                        backPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                    }
+
+                       
+                }
                 RunVideo();
             }
 

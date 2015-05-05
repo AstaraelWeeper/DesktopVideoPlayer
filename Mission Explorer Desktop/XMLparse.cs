@@ -45,9 +45,9 @@ namespace Mission_Explorer_Desktop
             string FPSstring = (string)element.Attribute("FPS");
             int FPSvalue;
             if (string.IsNullOrEmpty(FPSstring))
-            { FPSvalue = Int32.Parse(element.Attribute("FPS").Value); }
-            else
             { FPSvalue = 5; }
+            else
+            { FPSvalue = Int32.Parse(element.Attribute("FPS").Value); }
             FPS.Add(FPSvalue);
         }
 
