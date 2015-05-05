@@ -12,6 +12,7 @@ namespace Mission_Explorer_Desktop
         public List<string> rightPictures = new List<string>();
         public List<string> backPictures = new List<string>();
         string[] allSubroutePictures;
+        int channels = 4; //this can be changed if the xml indicates more than 4 screens are used
         
 
 

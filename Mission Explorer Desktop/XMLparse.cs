@@ -14,8 +14,10 @@ namespace Mission_Explorer_Desktop
         List<string> frameInfo = new List<string>(); //to display
         public List<int> FPS = new List<int>(); //to use to adjust settings
         public List<string> GoogleMapsCoords = new List<string>();
-        public List<string> GetSubRouteTitles(List<string> XMlfilepaths)
+        
 
+        
+        public List<string> GetSubRouteTitles(List<string> XMlfilepaths)
         {  
             foreach (string path in XMlfilepaths) //for each XML file
             {
@@ -42,10 +44,10 @@ namespace Mission_Explorer_Desktop
         {
             string FPSstring = (string)element.Attribute("FPS");
             int FPSvalue;
-            if (FPSstring == null)
-            { FPSvalue = 5; }
-            else
+            if (string.IsNullOrEmpty(FPSstring))
             { FPSvalue = Int32.Parse(element.Attribute("FPS").Value); }
+            else
+            { FPSvalue = 5; }
             FPS.Add(FPSvalue);
         }
 

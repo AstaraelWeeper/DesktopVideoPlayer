@@ -29,7 +29,6 @@ namespace Mission_Explorer_Desktop
         List<string> frameInfo = new List<string>();
         int subRoute = 0;
         bool playing;
-       public bool googleMapsInit = false;
        private static GoogleMaps googleMaps = null;
        
        
@@ -37,14 +36,18 @@ namespace Mission_Explorer_Desktop
        public MainForm()
        {
            InitializeComponent();
-           RefreshData();
+           
        }
 
         private void RefreshData()
         {
-          folderTraverse.getInitialData();
-          if (folderTraverse.startFolder != null)
+          
+          if (string.IsNullOrEmpty(folderTraverse.startFolder))
+          {//error
+          }
+          else
           {
+              folderTraverse.getInitialData();
               JsonRouteTitle = folderTraverse.ParseJson(); //get json
               lstRoute.DataSource = JsonRouteTitle; //display it in listbox
               listBoxSubRouteNo.DataSource = folderTraverse.countDirectoriesString;
@@ -93,7 +96,7 @@ namespace Mission_Explorer_Desktop
         private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
         {
    
-            //now will only be used to change the start folder
+            
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 folderTraverse.startFolder = openFileDialog1.FileName;
@@ -102,20 +105,6 @@ namespace Mission_Explorer_Desktop
 
         }
 
-
-
-     /*   private void listBoxSubRouteNo_MouseDoubleClick(object sender, MouseEventArgs e) //get chosen subroute from listbox, pass that array of file paths through
-        {
-
-            if (listBoxSubRouteNo.SelectedItem != null)
-            {
-                int subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
-                imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute]);
-                frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
-                RunVideo();
-            }
-
-        } */
 
         void RunVideo() 
         {

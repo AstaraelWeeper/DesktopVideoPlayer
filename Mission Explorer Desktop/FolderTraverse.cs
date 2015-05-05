@@ -19,7 +19,7 @@ namespace Mission_Explorer_Desktop
     {
         public string startFolder;
         string startFolderExtracted;
-        string[] outerFolder; 
+        string[] outerFolders; 
         string[] JSONRouteInfoPath; //should only need [0]
        public List<string[]> jpgPaths = new List<string[]>(); //the final list of jpeg paths
         
@@ -36,7 +36,10 @@ namespace Mission_Explorer_Desktop
 
         public void getInitialData() //should populate outerfolders file paths (subroute folders), the JSON file path, and each XML file path
         {
-            if (startFolder != null)
+            if (string.IsNullOrEmpty(startFolder))
+            { //error
+            }
+            else
             {
                 startFolderExtracted = startFolder + "extracted";
                 using (ZipFile zip = ZipFile.Read(startFolder))
@@ -44,13 +47,13 @@ namespace Mission_Explorer_Desktop
                     zip.ExtractExistingFile = ExtractExistingFileAction.OverwriteSilently;
                     zip.ExtractAll(startFolderExtracted);
                 }    //this is for changing file
-                outerFolder = Directory.GetDirectories(startFolderExtracted); //needs to be startfolderextracted if the above code is active
+                outerFolders = Directory.GetDirectories(startFolderExtracted); //needs to be startfolderextracted if the above code is active
                 JSONRouteInfoPath = Directory.GetFiles(startFolderExtracted, "*.json"); //needs to be startfolderextracted if the above code is active
 
 
-                foreach (string directory in outerFolder)
+                foreach (string directory in outerFolders)
                 {
-                    GetXMLFilePaths(directory);
+                    GetXMLFilePaths(directory); 
                     ExtractJpegZips(directory);
                     getRouteImages(directory);
                     AddToNumberOfDirectories();
@@ -101,7 +104,7 @@ namespace Mission_Explorer_Desktop
 
             List<string> list = new List<string>(); 
             PropertyInfo[] JsonProperties  = JsonRouteInfo.GetType().GetProperties();//get the properties of the class
-
+            
             foreach (var prop in JsonProperties) 
             {
                 string name = prop.Name as string; //get property name
