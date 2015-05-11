@@ -63,6 +63,16 @@ namespace Mission_Explorer_Desktop
 
             chkScale.Checked = settings.scaleImages;
 
+            if (settings.mode == "video")
+            {
+                rbtnVideo.Checked = true;
+                rbtnPresentation.Checked = false;
+            }
+            else if (settings.mode == "slideshow")
+            {
+                rbtnPresentation.Checked = true;
+                rbtnVideo.Checked = false;
+            }
             
 
         }
@@ -98,12 +108,44 @@ namespace Mission_Explorer_Desktop
 
        private void rdoMetres_CheckedChanged(object sender, EventArgs e)
         {
+           if(rdoMetres.Checked == true)
+           {
             settings.units = "metres";
+           }
         }
 
         private void rdoMiles_CheckedChanged(object sender, EventArgs e)
         {
+            if(rdoMiles.Checked == true)
+            {
             settings.units = "miles";
+            }
+        }
+
+        //mode
+
+        private void rbtnVideo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnVideo.Checked == true)
+            {
+                settings.mode = "video";
+                rbtnVerySlow.Enabled = true;
+                rbtnSlow.Enabled = true;
+                rbtnMedium.Enabled = true;
+                rbtnFast.Enabled = true;
+            }
+        }
+
+        private void rbtnPresentation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnPresentation.Checked == true)
+            {
+                settings.mode = "slideshow";
+                rbtnVerySlow.Enabled = false;
+                rbtnSlow.Enabled = false;
+                rbtnMedium.Enabled = false;
+                rbtnFast.Enabled = false;
+            }
         }
 
 

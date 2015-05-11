@@ -13,11 +13,14 @@ namespace Mission_Explorer_Desktop
 
         public string units { get; set; }
 
+        public string mode { get; set; }
+
         public Settings() //constructor
         {
             playbackSpeed = 10;
             scaleImages = true;
             units = "meters";
+            mode = "video";
         }   
 
     }

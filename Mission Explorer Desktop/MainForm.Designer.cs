@@ -55,6 +55,9 @@
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.pictureBoxBack = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitTopBottom)).BeginInit();
             this.splitTopBottom.Panel1.SuspendLayout();
@@ -76,6 +79,7 @@
             this.splitRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -130,17 +134,11 @@
             // 
             // splitTopBottom.Panel1
             // 
-            this.splitTopBottom.Panel1.Controls.Add(this.btnRestart);
-            this.splitTopBottom.Panel1.Controls.Add(this.btnGoogleMaps);
+            this.splitTopBottom.Panel1.Controls.Add(this.groupBox1);
             this.splitTopBottom.Panel1.Controls.Add(this.textBox3);
             this.splitTopBottom.Panel1.Controls.Add(this.textBox2);
             this.splitTopBottom.Panel1.Controls.Add(this.textBox1);
             this.splitTopBottom.Panel1.Controls.Add(this.lblTrackDistance);
-            this.splitTopBottom.Panel1.Controls.Add(this.btnStop);
-            this.splitTopBottom.Panel1.Controls.Add(this.btnPause);
-            this.splitTopBottom.Panel1.Controls.Add(this.btnPlay);
-            this.splitTopBottom.Panel1.Controls.Add(this.radioBackwards);
-            this.splitTopBottom.Panel1.Controls.Add(this.radioForwards);
             this.splitTopBottom.Panel1.Controls.Add(this.listBoxSubRouteNo);
             this.splitTopBottom.Panel1.Controls.Add(this.lstSubRouteXML);
             this.splitTopBottom.Panel1.Controls.Add(this.lblFilesLoadedNo);
@@ -155,7 +153,7 @@
             // 
             // btnRestart
             // 
-            this.btnRestart.Location = new System.Drawing.Point(1279, 39);
+            this.btnRestart.Location = new System.Drawing.Point(315, 19);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(75, 23);
             this.btnRestart.TabIndex = 16;
@@ -165,7 +163,7 @@
             // 
             // btnGoogleMaps
             // 
-            this.btnGoogleMaps.Location = new System.Drawing.Point(1069, 111);
+            this.btnGoogleMaps.Location = new System.Drawing.Point(115, 129);
             this.btnGoogleMaps.Name = "btnGoogleMaps";
             this.btnGoogleMaps.Size = new System.Drawing.Size(201, 23);
             this.btnGoogleMaps.TabIndex = 15;
@@ -211,7 +209,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(1180, 39);
+            this.btnStop.Location = new System.Drawing.Point(212, 19);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 10;
@@ -221,7 +219,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(1081, 39);
+            this.btnPause.Location = new System.Drawing.Point(115, 19);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -231,7 +229,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(981, 39);
+            this.btnPlay.Location = new System.Drawing.Point(15, 19);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 8;
@@ -242,7 +240,7 @@
             // radioBackwards
             // 
             this.radioBackwards.AutoSize = true;
-            this.radioBackwards.Location = new System.Drawing.Point(1199, 78);
+            this.radioBackwards.Location = new System.Drawing.Point(262, 62);
             this.radioBackwards.Name = "radioBackwards";
             this.radioBackwards.Size = new System.Drawing.Size(101, 17);
             this.radioBackwards.TabIndex = 7;
@@ -253,7 +251,7 @@
             // 
             this.radioForwards.AutoSize = true;
             this.radioForwards.Checked = true;
-            this.radioForwards.Location = new System.Drawing.Point(1046, 78);
+            this.radioForwards.Location = new System.Drawing.Point(75, 62);
             this.radioForwards.Name = "radioForwards";
             this.radioForwards.Size = new System.Drawing.Size(91, 17);
             this.radioForwards.TabIndex = 6;
@@ -373,6 +371,46 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnNext);
+            this.groupBox1.Controls.Add(this.btnGoogleMaps);
+            this.groupBox1.Controls.Add(this.btnPrevious);
+            this.groupBox1.Controls.Add(this.btnPlay);
+            this.groupBox1.Controls.Add(this.btnRestart);
+            this.groupBox1.Controls.Add(this.btnPause);
+            this.groupBox1.Controls.Add(this.btnStop);
+            this.groupBox1.Controls.Add(this.radioForwards);
+            this.groupBox1.Controls.Add(this.radioBackwards);
+            this.groupBox1.Location = new System.Drawing.Point(987, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(445, 167);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Enabled = false;
+            this.btnPrevious.Location = new System.Drawing.Point(63, 97);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(127, 23);
+            this.btnPrevious.TabIndex = 17;
+            this.btnPrevious.Text = "Previous Slide";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Enabled = false;
+            this.btnNext.Location = new System.Drawing.Point(244, 97);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(119, 23);
+            this.btnNext.TabIndex = 18;
+            this.btnNext.Text = "Next Slide";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,6 +444,8 @@
             this.splitRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,6 +480,9 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnGoogleMaps;
         private System.Windows.Forms.Button btnRestart;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
     }
 }
 

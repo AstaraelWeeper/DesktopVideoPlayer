@@ -33,7 +33,8 @@ namespace Mission_Explorer_Desktop
         int subRoute = 0;
         bool playing;
        private static GoogleMaps googleMaps = null;
-       int channels = 4; //this can be changed if the xml indicates more than 4 screens are used
+       int channels = 0; //this can be changed if the xml indicates more than 4 screens are used
+       int currentSubroute = -1;
        
        
 
@@ -100,6 +101,27 @@ namespace Mission_Explorer_Desktop
                 pictureBoxRight.SizeMode = PictureBoxSizeMode.Normal;
                 pictureBoxBack.SizeMode = PictureBoxSizeMode.Normal;
             }
+            if (_timer != null)
+            {
+                playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
+
+                if (returnedSettings.mode == "video")
+                {
+                    _timer.Interval = playSpeed;
+                    btnNext.Enabled = false;
+                    btnPrevious.Enabled = false;
+                    radioBackwards.Enabled = true;
+                    radioForwards.Enabled = true;
+                }
+                else if (returnedSettings.mode == "slideshow")
+                {
+                    _timer.Interval = 6000;
+                    btnPrevious.Enabled = true;
+                    btnNext.Enabled = true;
+                    radioBackwards.Enabled = false;
+                    radioForwards.Enabled = false;
+                }
+            }
         }
 
         private void loadFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,14 +137,52 @@ namespace Mission_Explorer_Desktop
         }
 
 
-        void RunVideo() 
+        void SetUpNewVideo() 
         {
-            _timer = new System.Timers.Timer(playSpeed); //this will change to number passed in.
+            frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
+            channels = xmlparse.GetChannelNumber(folderTraverse.xmlFilePaths[subRoute]);
+            playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
+
+            if (returnedSettings.mode == "video")
+            {
+              _timer = new System.Timers.Timer(playSpeed); //this will change to number passed in.
+            }
+
+             else if (returnedSettings.mode == "slideshow")
+            {
+              _timer = new System.Timers.Timer(6000); //this will change to number passed in.
+            }
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
             _timer.AutoReset = true;
             _timer.Enabled = true;
             frameNumber = 0;
             playing = true;
+
+            
+
+            for (int i = 0; i < channels; i++)
+            {
+                ImageDisplay imageDisplay = new ImageDisplay();
+
+                if (i == 0)
+                {
+                    leftPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                }
+                else if (i == 1)
+                {
+                    frontPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                }
+                else if (i == 2)
+                {
+                    rightPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                }
+                else if (i == 3)
+                {
+                    backPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
+                }
+
+
+            } 
             LoadPictures();
             
 
@@ -145,7 +205,6 @@ namespace Mission_Explorer_Desktop
                 pictureBoxBack.LoadAsync(backPictures[frameNumber]);
 
             UpdateTrackDistance();
-            NextFrame();
         }
 
         private void UpdateTrackDistance()
@@ -170,22 +229,23 @@ namespace Mission_Explorer_Desktop
             lblTrackDistance.Text = frameInfo[frameNumber];
         }
         private void NextFrame(){
-              
-            if (radioForwards.Checked == true)
-            {
-                if (frameNumber < (leftPictures.Count - 1)) //should all be the same
-                { frameNumber++; }
-                
-            }
 
-            else if (radioBackwards.Checked == true)
-            {
-                if (frameNumber > 0)
-                { frameNumber--; }
-            }
-          
-          _timer.Start();
+                if (radioForwards.Checked == true)
+                {
+                    if (frameNumber < (leftPictures.Count - 1)) //should all be the same
+                    { frameNumber++; }
+
+                }
+
+                else if (radioBackwards.Checked == true)
+                {
+                    if (frameNumber > 0)
+                    { frameNumber--; }
+                }
+             
+            _timer.Start();
         }
+
 
         private void Timer_Elapsed(object sender, EventArgs e)
         {
@@ -205,7 +265,6 @@ namespace Mission_Explorer_Desktop
                 lblTrackDistance.Text = "";
 
                 frameNumber = 0;
-                
 
 
         }
@@ -220,36 +279,15 @@ namespace Mission_Explorer_Desktop
             if (listBoxSubRouteNo.SelectedItem != null)
             {
                 subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
-                
-                frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
-                channels = xmlparse.GetChannelNumber(folderTraverse.xmlFilePaths[subRoute])[subRoute];
-                playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
-                   for (int i = 0; i < channels; i++)
+                if (subRoute != currentSubroute)
                 {
-                    ImageDisplay imageDisplay = new ImageDisplay();
-
-                    if (i == 0)
-                    {
-                        leftPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
-                    }
-                    else if (i==1)
-                    {
-                        frontPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
-                    }
-                    else if (i == 2)
-                    {
-                        rightPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
-                    }
-                    else if (i == 3)
-                    {
-                        backPictures = imageDisplay.LoadAllPicturePaths(folderTraverse.jpgPaths[subRoute], i, channels);
-                    }
-
-                       
+                    currentSubroute = subRoute;
+                    SetUpNewVideo();
                 }
-                RunVideo();
-            }
 
+                LoadPictures();
+                _timer.Start();
+            }
         }
 
         private void btnGoogleMaps_Click(object sender, EventArgs e)
@@ -276,6 +314,25 @@ namespace Mission_Explorer_Desktop
         private void btnRestart_Click(object sender, EventArgs e)
         {
             frameNumber = 0;
+            _timer.Start();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _timer.Stop();
+            if (frameNumber < (leftPictures.Count - 1)) //should all be the same
+            { frameNumber++; }
+            LoadPictures();
+            _timer.Start();
+
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            _timer.Stop();
+            if (frameNumber > 0)
+            { frameNumber--; }
+            LoadPictures();
             _timer.Start();
         }
 
