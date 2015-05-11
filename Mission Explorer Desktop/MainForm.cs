@@ -35,6 +35,7 @@ namespace Mission_Explorer_Desktop
        private static GoogleMaps googleMaps = null;
        int channels = 0; //this can be changed if the xml indicates more than 4 screens are used
        int currentSubroute = -1;
+       int slideshowSpeed = 5000;
        
        
 
@@ -115,7 +116,7 @@ namespace Mission_Explorer_Desktop
                 }
                 else if (returnedSettings.mode == "slideshow")
                 {
-                    _timer.Interval = 6000;
+                    _timer.Interval = slideshowSpeed;
                     btnPrevious.Enabled = true;
                     btnNext.Enabled = true;
                     radioBackwards.Enabled = false;
@@ -150,7 +151,7 @@ namespace Mission_Explorer_Desktop
 
              else if (returnedSettings.mode == "slideshow")
             {
-              _timer = new System.Timers.Timer(6000); //this will change to number passed in.
+              _timer = new System.Timers.Timer(slideshowSpeed); //this will change to number passed in.
             }
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
             _timer.AutoReset = true;
@@ -213,21 +214,30 @@ namespace Mission_Explorer_Desktop
             {
                 lblTrackDistance.BeginInvoke(new Action(() =>
                     {
-                        if (returnedSettings.units == "meters"){
-                        lblTrackDistance.Text = "Distance = " + string.Format(frameInfo[frameNumber])+ " " + returnedSettings.units;}
-                        else if (returnedSettings.units == "miles")
-                        {
-                            double frameInfoDouble = (Double.Parse(frameInfo[frameNumber]) / 1609.344);//convert to miles
-                            lblTrackDistance.Text = "Distance = " + frameInfoDouble.ToString("F") + " " + returnedSettings.units;
-                        }
-                        
+                        UpdateTrackLabel();
+
                     }));
 
             }
-            else 
+            else
 
-            lblTrackDistance.Text = frameInfo[frameNumber];
+                UpdateTrackLabel();
         }
+
+        private void UpdateTrackLabel()
+        {
+            if (returnedSettings.units == "meters")
+            {
+                lblTrackDistance.Text = "Distance = " + string.Format(frameInfo[frameNumber]) + " " + returnedSettings.units;
+            }
+            else if (returnedSettings.units == "miles")
+            {
+                double frameInfoDouble = (Double.Parse(frameInfo[frameNumber]) / 1609.344);//convert to miles
+                lblTrackDistance.Text = "Distance = " + frameInfoDouble.ToString("F") + " " + returnedSettings.units;
+            }
+        }
+
+
         private void NextFrame(){
 
                 if (radioForwards.Checked == true)
