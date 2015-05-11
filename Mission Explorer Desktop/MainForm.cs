@@ -40,6 +40,11 @@ namespace Mission_Explorer_Desktop
        public MainForm()
        {
            InitializeComponent();
+           // MainForm.ActiveForm.Width = 2600;
+           splitLeftRight.SplitterDistance = splitLeftRight.Size.Width / 2;
+           splitLeft.SplitterDistance = splitLeft.Size.Width / 2;
+           splitRight.SplitterDistance = splitRight.Size.Width / 2;
+           
            
        }
 
@@ -97,7 +102,7 @@ namespace Mission_Explorer_Desktop
             }
         }
 
-        private void loadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
    
             
@@ -217,6 +222,7 @@ namespace Mission_Explorer_Desktop
                 subRoute = Convert.ToInt32(listBoxSubRouteNo.SelectedItem);
                 
                 frameInfo = xmlparse.GetFrameInfo(folderTraverse.xmlFilePaths[subRoute]); //returns frame info
+                channels = xmlparse.GetChannelNumber(folderTraverse.xmlFilePaths[subRoute])[subRoute];
                 playSpeed = settingsSpeedMultiplier / xmlparse.FPS[subRoute]; //added to use the FPS from XML
                    for (int i = 0; i < channels; i++)
                 {

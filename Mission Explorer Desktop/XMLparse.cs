@@ -14,6 +14,7 @@ namespace Mission_Explorer_Desktop
         List<string> frameInfo = new List<string>(); //to display
         public List<int> FPS = new List<int>(); //to use to adjust settings
         public List<string> GoogleMapsCoords = new List<string>();
+        public List<int> channels = new List<int>();
         
 
         
@@ -33,6 +34,7 @@ namespace Mission_Explorer_Desktop
                    subRouteTitles.Add(xmlBuilder);
 
                    GetFPS(element);
+                   
                }
             }
 
@@ -49,6 +51,26 @@ namespace Mission_Explorer_Desktop
             else
             { FPSvalue = Int32.Parse(element.Attribute("FPS").Value); }
             FPS.Add(FPSvalue);
+        }
+
+        public List<int> GetChannelNumber(string XMLfilepath)
+        {
+            int noChannels;
+            XDocument doc = XDocument.Load(XMLfilepath);
+            channels.Clear();
+            var channelsElement = doc.Descendants("channels").First();
+            var channelsString = channelsElement.Attribute("screens").Value.ToString();
+            if (string.IsNullOrEmpty(channelsString))
+            {
+                noChannels = 4;
+            }
+            else
+            {
+                var channelsArray = channelsString.Split(',');
+                noChannels = channelsArray.Count();
+            }
+            channels.Add(noChannels);
+            return channels;
         }
 
 
